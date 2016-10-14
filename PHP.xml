@@ -1,0 +1,195 @@
+<templateSet group="PHP">
+  <template name="ci-con" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;class $CONTROLLER_NAME$ extends CI_Controller {&#10;    public function __construct() {&#10;&#9;&#9;parent::__construct();&#10;    }&#10;&#9;public function index()&#10;&#9;{&#10;&#9;&#10;&#9;}&#10;}" description="CI Controller" toReformat="false" toShortenFQNames="true">
+    <variable name="CONTROLLER_NAME" expression="capitalize(String)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+      <option name="PHP Comment" value="false" />
+    </context>
+  </template>
+  <template name="ci-view" value="$this-&gt;load-&gt;view(&quot;$END$&quot;);" description="CI equivalente a $this-&gt;load-&gt;view();" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-model" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// Este modelo usa Eloquent, no usa la interfaz de modelos de Codeigniter CI_Model&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;&#10;class $MODELNAME$ extends Eloquent{&#10;    // Asignaciones -------------------------------------------------------&#10;    // definir que atributos son asignables (por seguridad)&#10;    &#10;&#10;    // Ligar el modelo a la tabla ---------------------------------&#10;    // Definir la tabla yel campo llave de la misma&#10;    protected $table = '$TABLENAME$';&#10;    protected $primaryKey = '$PRIMARYKEY$';&#10;    &#10;    // Definir relaciones --------------------------------------------------&#10;}" description="Modelo de Eloquent" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="capitalize(String)" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PRIMARYKEY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-post" value="$this-&gt;input-&gt;post(&quot;$VAR_NAME$&quot;, TRUE)" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="fn_diag" value="//==================================================================================================================&#10;    //                  $COMMENT$&#10;    //==================================================================================================================" description="Comentario de diálogo" toReformat="false" toShortenFQNames="true">
+    <variable name="COMMENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-api" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $CLASSNAME$ extends REST_Controller {&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_put()&#10;    {&#10;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _get_post() {&#10;        $requestMethod = $_SERVER[&quot;REQUEST_METHOD&quot;];&#10;&#10;        $post = array();&#10;        switch ($requestMethod)&#10;        {&#10;            case 'POST':&#10;                if(!(empty($_POST))) {&#10;                    $post = $_POST;&#10;                } else {&#10;                    $post = json_decode(file_get_contents('php://input'), true);&#10;                }&#10;                break;&#10;        }&#10;        return $post;&#10;    }&#10;}" description="API REST con loa libreria de CI REST" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="APINAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?fore" value="&lt;?php foreach ($OBJECT$ as $INDEX$ =&gt; $VARIABLE$) { ?&gt;&#10;&lt;?php } ?&gt;" description="PHP Opening for foreach" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="INDEX" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?" value="&lt;?php ?&gt;" description="PHP Opening" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?echo" value="&lt;?php echo $VARIABLE$; ?&gt;" description="PHP echo" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?if" value="&lt;?php if($VAR$ === $COMPARE$) { ?&gt;&#10;&lt;?php } ?&gt;" description="PHP IF" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COMPARE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="//sep" value="//------------------------------------------------------------------------------------------------------------------" description="Separador" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="//sep-title" value="//--------------------------------------------------------------------------------------------------------------&#10;//                              $TITLE$&#10;//--------------------------------------------------------------------------------------------------------------" description="Separador de titulo" toReformat="false" toShortenFQNames="true">
+    <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-field" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        $FIELDS$&#10;    )&#10;);" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELDS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-pk" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;auto_increment&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-mediumtext" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;MEDIUMTEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-set" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;SET&quot;,&#10;    &quot;constraint&quot; =&gt; array ($ELEMENTS$)&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELEMENTS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-create" value="$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-drop" value="$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-datetime" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-eloquent" value="&quot;created_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;),&#10;&quot;updated_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-migration" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _add_foreign_key($table, $local_key, $foreign_table, $foreign_key = NULL) {&#10;        $fkTemplate = &quot;ALTER TABLE `%s` ADD FOREIGN KEY(`%s`) REFERENCES %s(`%s`) ON DELETE CASCADE ON UPDATE CASCADE&quot;;&#10;        $foreign_key = $foreign_key !== NULL ? $foreign_key : $local_key;&#10;        $fkQuery = sprintf($fkTemplate, $table, $local_key, $foreign_table, $foreign_key);&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _drop_foreign_key($table, $fkIndex = 1) {&#10;        $fkQuery = &quot;ALTER TABLE &quot; . $table . &quot; DROP FOREIGN KEY &quot; . $table . &quot;_ibfk_&quot; . $fkIndex . &quot; ;&quot;;&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _enable_key_checks() {&#10;        $enable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 1;&quot;;&#10;        $this-&gt;db-&gt;query($enable_key_checks);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _disable_key_checks() {&#10;        $disable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 0;&quot;;&#10;        $this-&gt;db-&gt;query($disable_key_checks);&#10;    }&#10;}" toReformat="false" toShortenFQNames="true">
+    <variable name="MIGRATION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DOWN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-key" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="_add_fk" value="$this-&gt;_add_foreign_key(&quot;$LOCALTABLE$&quot;, &quot;$LOCALKEY$&quot;, &quot;$FOREIGNTABLE$&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="LOCALTABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOCALKEY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FOREIGNTABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-text" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-double" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-tinyint" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TINYINT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="_drop_fk" value="$this-&gt;_drop_foreign_key(&quot;$LOCALTABLE$&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="LOCALTABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>
