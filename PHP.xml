@@ -192,4 +192,63 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="bs-input-v" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-input-h" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZELB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBERLB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBER" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-input-gen-v" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-input-gen-h" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZELB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBERLB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-textarea-v" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;textarea class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&lt;/textarea&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-textarea-h" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;textarea class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&lt;/textarea&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZELB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBERLB" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZENUMBER" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
