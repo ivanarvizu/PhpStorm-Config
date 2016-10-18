@@ -251,4 +251,17 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="dbforge-add-col" value="$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);" toReformat="false" toShortenFQNames="true">
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dbforge-drop-col" value="$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELD$&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
