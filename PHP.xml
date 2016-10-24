@@ -264,4 +264,32 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="csrf-input" value="&lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $csrf['name']; ?&gt;&quot; value=&quot;&lt;?php echo $csrf['hash']; ?&gt;&quot;&gt;" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-post" value="$post = $this-&gt;input-&gt;post(NULL, TRUE);&#10;$OBJECT$ = new $MODEL$();" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-var" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-find" value="$post = $this-&gt;input-&gt;post(NULL, TRUE);&#10;$OBJECT$ = $MODEL$::find($KEYVALUE$);" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="KEYVALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
