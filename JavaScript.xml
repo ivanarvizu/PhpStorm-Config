@@ -1,0 +1,10 @@
+<templateSet group="JavaScript">
+  <template name="bb-fn" value="$FUNCTIONNAME$ : function($PARAMS$) {&#10;    var View = this;&#10;}" description="Function Backbone" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNCTIONNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="TypeScript" value="true" />
+    </context>
+  </template>
+</templateSet>
