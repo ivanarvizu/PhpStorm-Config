@@ -11,7 +11,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-model" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// Este modelo usa Eloquent, no usa la interfaz de modelos de Codeigniter CI_Model&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;&#10;class $MODELNAME$ extends Eloquent{&#10;    // Asignaciones -------------------------------------------------------&#10;    // definir que atributos son asignables (por seguridad)&#10;    &#10;&#10;    // Ligar el modelo a la tabla ---------------------------------&#10;    // Definir la tabla yel campo llave de la misma&#10;    protected $table = '$TABLENAME$';&#10;    protected $primaryKey = '$PRIMARYKEY$';&#10;    &#10;    // Definir relaciones --------------------------------------------------&#10;}" description="Modelo de Eloquent" toReformat="false" toShortenFQNames="true">
+  <template name="elo-mod" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// Este modelo usa Eloquent, no usa la interfaz de modelos de Codeigniter CI_Model&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;&#10;class $MODELNAME$ extends Eloquent{&#10;    // Asignaciones -------------------------------------------------------&#10;    // definir que atributos son asignables (por seguridad)&#10;    &#10;&#10;    // Ligar el modelo a la tabla ---------------------------------&#10;    // Definir la tabla yel campo llave de la misma&#10;    protected $table = '$TABLENAME$';&#10;    protected $primaryKey = '$PRIMARYKEY$';&#10;    &#10;    // Definir relaciones --------------------------------------------------&#10;}" description="Modelo de Eloquent" toReformat="false" toShortenFQNames="true">
     <variable name="MODELNAME" expression="capitalize(String)" defaultValue="" alwaysStopAt="true" />
     <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PRIMARYKEY" expression="" defaultValue="" alwaysStopAt="true" />
@@ -82,20 +82,20 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-field" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        $FIELDS$&#10;    )&#10;);" toReformat="false" toShortenFQNames="true">
+  <template name="db-a-field" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        $FIELDS$&#10;    )&#10;);" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="FIELDS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-pk" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;auto_increment&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-pk" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;auto_increment&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
@@ -103,51 +103,51 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-mediumtext" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;MEDIUMTEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-mtext" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;MEDIUMTEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-set" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;SET&quot;,&#10;    &quot;constraint&quot; =&gt; array ($ELEMENTS$)&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-set" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;SET&quot;,&#10;    &quot;constraint&quot; =&gt; array ($ELEMENTS$)&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ELEMENTS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-create" value="$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');" toReformat="false" toShortenFQNames="true">
+  <template name="db-create" value="$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-drop" value="$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" toReformat="false" toShortenFQNames="true">
+  <template name="db-d" value="$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" toReformat="false" toShortenFQNames="true">
     <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-datetime" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-datetime" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-eloquent" value="&quot;created_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;),&#10;&quot;updated_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-elo" value="&quot;created_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;),&#10;&quot;updated_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;)" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-migration" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _add_foreign_key($table, $local_key, $foreign_table, $foreign_key = NULL) {&#10;        $fkTemplate = &quot;ALTER TABLE `%s` ADD FOREIGN KEY(`%s`) REFERENCES %s(`%s`) ON DELETE CASCADE ON UPDATE CASCADE&quot;;&#10;        $foreign_key = $foreign_key !== NULL ? $foreign_key : $local_key;&#10;        $fkQuery = sprintf($fkTemplate, $table, $local_key, $foreign_table, $foreign_key);&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _drop_foreign_key($table, $fkIndex = 1) {&#10;        $fkQuery = &quot;ALTER TABLE &quot; . $table . &quot; DROP FOREIGN KEY &quot; . $table . &quot;_ibfk_&quot; . $fkIndex . &quot; ;&quot;;&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _enable_key_checks() {&#10;        $enable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 1;&quot;;&#10;        $this-&gt;db-&gt;query($enable_key_checks);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _disable_key_checks() {&#10;        $disable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 0;&quot;;&#10;        $this-&gt;db-&gt;query($disable_key_checks);&#10;    }&#10;}" toReformat="false" toShortenFQNames="true">
+  <template name="ci-mig" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _add_foreign_key($table, $local_key, $foreign_table, $foreign_key = NULL) {&#10;        $fkTemplate = &quot;ALTER TABLE `%s` ADD FOREIGN KEY(`%s`) REFERENCES %s(`%s`) ON DELETE CASCADE ON UPDATE CASCADE&quot;;&#10;        $foreign_key = $foreign_key !== NULL ? $foreign_key : $local_key;&#10;        $fkQuery = sprintf($fkTemplate, $table, $local_key, $foreign_table, $foreign_key);&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _drop_foreign_key($table, $fkIndex = 1) {&#10;        $fkQuery = &quot;ALTER TABLE &quot; . $table . &quot; DROP FOREIGN KEY &quot; . $table . &quot;_ibfk_&quot; . $fkIndex . &quot; ;&quot;;&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _enable_key_checks() {&#10;        $enable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 1;&quot;;&#10;        $this-&gt;db-&gt;query($enable_key_checks);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _disable_key_checks() {&#10;        $disable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 0;&quot;;&#10;        $this-&gt;db-&gt;query($disable_key_checks);&#10;    }&#10;}" toReformat="false" toShortenFQNames="true">
     <variable name="MIGRATION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UP" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DOWN" expression="" defaultValue="" alwaysStopAt="true" />
@@ -155,7 +155,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-key" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-key" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -169,19 +169,19 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-text" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-text" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TEXT&quot;&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-double" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE&quot;&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-double" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE&quot;&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-tinyint" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TINYINT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
+  <template name="db-tinyint" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TINYINT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
@@ -214,7 +214,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="bs-input-gen-v" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+  <template name="bs-input-gv" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
     <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TYPE" expression="" defaultValue="" alwaysStopAt="true" />
@@ -223,7 +223,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="bs-input-gen-h" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
+  <template name="bs-input-gh" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;$TYPE$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" toReformat="false" toShortenFQNames="true">
     <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZELB" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZENUMBERLB" expression="" defaultValue="" alwaysStopAt="true" />
@@ -254,13 +254,13 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-add-col" value="$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);" toReformat="false" toShortenFQNames="true">
+  <template name="db-a-col" value="$fields = array();&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);" toReformat="false" toShortenFQNames="true">
     <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="dbforge-drop-col" value="$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELD$&quot;);" toReformat="false" toShortenFQNames="true">
+  <template name="db-d-col" value="$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELD$&quot;);" toReformat="false" toShortenFQNames="true">
     <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="FIELD" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
