@@ -319,4 +319,86 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="ci-sess" value="$this-&gt;session-&gt;set_userdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-g-sess" value="$this-&gt;session-&gt;$SESSNAME$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-flash" value="$this-&gt;session-&gt;set_flashdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-g-flash" value="$this-&gt;session-&gt;flashdata(&quot;$SESSNAME$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ifel" value="&lt;?php if($VAR$ === $COMPARE$) { ?&gt;&#10;    &lt;!-- IF condition goes here --&gt;&#10;&lt;?php } else { ?&gt;&#10;    &lt;!-- ELSE condition goes here --&gt;&#10;&lt;?php } ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COMPARE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?tern" value="&lt;?php echo $VARIABLE$ $CONDITION$== $VALUE$ ? $THEN$ : $ELSE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a" value="$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-cc" value="* @property $PROPERTYNAME$            $PROPERTYVAR$           $PROPERTYDESCRIPTION$" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTYNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTYVAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTYDESCRIPTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
