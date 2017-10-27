@@ -46,7 +46,8 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="&lt;?" value="&lt;?php ?&gt;" description="PHP Opening" toReformat="false" toShortenFQNames="true">
+  <template name="&lt;?" value="&lt;?php $YACODE$ ?&gt;" description="PHP Opening" toReformat="false" toShortenFQNames="true">
+    <variable name="YACODE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
@@ -333,14 +334,14 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-flash" value="$this-&gt;session-&gt;set_flashdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-sfl" value="$this-&gt;session-&gt;set_flashdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-g-flash" value="$this-&gt;session-&gt;flashdata(&quot;$SESSNAME$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-fl" value="$this-&gt;session-&gt;flashdata(&quot;$SESSNAME$&quot;)" description="" toReformat="false" toShortenFQNames="true">
     <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -438,7 +439,35 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
-  <template name="&lt;?lang" value="&lt;?php echo $this-&gt;lang-&gt;line('$VALUE$'); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="&lt;?ci-lang" value="&lt;?php echo $this-&gt;lang-&gt;line('$VALUE$'); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sfl-s" value="$this-&gt;session-&gt;set_flashdata(&quot;success&quot;, &quot;$VALUE$&quot;);" description="$this-&gt;session-&gt;set_flashdata(&quot;success&quot;,&quot;valor&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sfl-e" value="$this-&gt;session-&gt;set_flashdata(&quot;error&quot;, &quot;$VALUE$&quot;);" description="$this-&gt;session-&gt;set_flashdata(&quot;error&quot;, &quot;error message&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-fl-e" value="$this-&gt;session-&gt;flashdata(&quot;error&quot;)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-fl-s" value="$this-&gt;session-&gt;flashdata(&quot;success&quot;)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lang" value="$this-&gt;lang-&gt;line('$VALUE$');" description="$this-&gt;lang-&gt;line('$VALUE$');" toReformat="false" toShortenFQNames="true">
     <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
