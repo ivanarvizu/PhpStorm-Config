@@ -46,7 +46,8 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="&lt;?" value="&lt;?php ?&gt;" description="PHP Opening" toReformat="false" toShortenFQNames="true">
+  <template name="&lt;?" value="&lt;?php $YACODE$ ?&gt;" description="PHP Opening" toReformat="false" toShortenFQNames="true">
+    <variable name="YACODE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
@@ -253,8 +254,9 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-a-col" value="$fields = array();&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-a-col" value="$fields = array();&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELD$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELD" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
@@ -299,6 +301,174 @@
     <variable name="DATA" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DATASOURCE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="HTTPRESPONSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-1-to-m" value="public function $MODEL$() {&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-1-to-1" value="public function $MODEL$() {&#10;    return $this-&gt;hasOne(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-One" toReformat="false" toShortenFQNames="true">
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sess" value="$this-&gt;session-&gt;set_userdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-g-sess" value="$this-&gt;session-&gt;$SESSNAME$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sfl" value="$this-&gt;session-&gt;set_flashdata(&quot;$SESSNAME$&quot;, $VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-fl" value="$this-&gt;session-&gt;flashdata(&quot;$SESSNAME$&quot;)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SESSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ifel" value="&lt;?php if($VAR$ === $COMPARE$) { ?&gt;&#10;    &lt;!-- IF condition goes here --&gt;&#10;&lt;?php } else { ?&gt;&#10;    &lt;!-- ELSE condition goes here --&gt;&#10;&lt;?php } ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COMPARE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?tern" value="&lt;?php echo $VARIABLE$ $CONDITION$== $VALUE$ ? $THEN$ : $ELSE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-cc" value="* @property $PROPERTYNAME$            $PROPERTYVAR$           $PROPERTYDESCRIPTION$" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PROPERTYNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTYVAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROPERTYDESCRIPTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a-table" value="$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-csrf" value=" &quot;csrf&quot; =&gt; array(&#10;    'name' =&gt; $this-&gt;security-&gt;get_csrf_token_name(),&#10;    'hash' =&gt; $this-&gt;security-&gt;get_csrf_hash()&#10;)&#10;&#10;//TODO pegar en la view: &lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $csrf['name']; ?&gt;&quot; value=&quot;&lt;?php echo $csrf['hash']; ?&gt;&quot;&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-model" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-mod" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="tmp-fri" value="&quot;Por favor proporcione su $XXX$&quot;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="XXX" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
+  <template name="tmp-fre" value="&quot;Por favor proporcione $XXX$ de su empresa&quot;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="XXX" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ci-lang" value="&lt;?php echo $this-&gt;lang-&gt;line('$VALUE$'); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sfl-s" value="$this-&gt;session-&gt;set_flashdata(&quot;success&quot;, &quot;$VALUE$&quot;);" description="$this-&gt;session-&gt;set_flashdata(&quot;success&quot;,&quot;valor&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sfl-e" value="$this-&gt;session-&gt;set_flashdata(&quot;error&quot;, &quot;$VALUE$&quot;);" description="$this-&gt;session-&gt;set_flashdata(&quot;error&quot;, &quot;error message&quot;);" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-fl-e" value="$this-&gt;session-&gt;flashdata(&quot;error&quot;)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-fl-s" value="$this-&gt;session-&gt;flashdata(&quot;success&quot;)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lang" value="$this-&gt;lang-&gt;line('$VALUE$');" description="$this-&gt;lang-&gt;line('$VALUE$');" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
