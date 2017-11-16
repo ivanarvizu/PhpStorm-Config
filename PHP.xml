@@ -89,13 +89,13 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-pk" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;auto_increment&quot; =&gt; TRUE&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-pk" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;auto_increment&quot; =&gt; TRUE&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
@@ -103,20 +103,20 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-mtext" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;MEDIUMTEXT&quot;&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-mtext" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;MEDIUMTEXT&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-set" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;SET&quot;,&#10;    &quot;constraint&quot; =&gt; array ($ELEMENTS$)&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-set" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;SET&quot;,&#10;    &quot;constraint&quot; =&gt; array ($ELEMENTS$)&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="ELEMENTS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -147,7 +147,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-mig" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _add_foreign_key($table, $local_key, $foreign_table, $foreign_key = NULL) {&#10;        $fkTemplate = &quot;ALTER TABLE `%s` ADD FOREIGN KEY(`%s`) REFERENCES %s(`%s`) ON DELETE CASCADE ON UPDATE CASCADE&quot;;&#10;        $foreign_key = $foreign_key !== NULL ? $foreign_key : $local_key;&#10;        $fkQuery = sprintf($fkTemplate, $table, $local_key, $foreign_table, $foreign_key);&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _drop_foreign_key($table, $fkIndex = 1) {&#10;        $fkQuery = &quot;ALTER TABLE &quot; . $table . &quot; DROP FOREIGN KEY &quot; . $table . &quot;_ibfk_&quot; . $fkIndex . &quot; ;&quot;;&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _enable_key_checks() {&#10;        $enable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 1;&quot;;&#10;        $this-&gt;db-&gt;query($enable_key_checks);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _disable_key_checks() {&#10;        $disable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 0;&quot;;&#10;        $this-&gt;db-&gt;query($disable_key_checks);&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-mig" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;    public function __construct()&#10;    {&#10;        parent::__construct();&#10;&#10;        $db = array(&quot;db&quot; =&gt; $this-&gt;db);&#10;        $this-&gt;load-&gt;library(&quot;migration_tools&quot;, $db);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
     <variable name="MIGRATION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UP" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DOWN" expression="" defaultValue="" alwaysStopAt="true" />
@@ -169,19 +169,19 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-text" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TEXT&quot;&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-text" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TEXT&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-double" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE&quot;&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-double" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-tinyint" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TINYINT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-tinyint" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TINYINT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
@@ -457,18 +457,26 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-fl-e" value="$this-&gt;session-&gt;flashdata(&quot;error&quot;)" toReformat="false" toShortenFQNames="true">
+  <template name="ci-fl-e" value="$this-&gt;session-&gt;flashdata(&quot;error&quot;)" description="" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-fl-s" value="$this-&gt;session-&gt;flashdata(&quot;success&quot;)" toReformat="false" toShortenFQNames="true">
+  <template name="ci-fl-s" value="$this-&gt;session-&gt;flashdata(&quot;success&quot;)" description="" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
   <template name="ci-lang" value="$this-&gt;lang-&gt;line('$VALUE$');" description="$this-&gt;lang-&gt;line('$VALUE$');" toReformat="false" toShortenFQNames="true">
     <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-mig-legacy" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _add_foreign_key($table, $local_key, $foreign_table, $foreign_key = NULL) {&#10;        $fkTemplate = &quot;ALTER TABLE `%s` ADD FOREIGN KEY(`%s`) REFERENCES %s(`%s`) ON DELETE CASCADE ON UPDATE CASCADE&quot;;&#10;        $foreign_key = $foreign_key !== NULL ? $foreign_key : $local_key;&#10;        $fkQuery = sprintf($fkTemplate, $table, $local_key, $foreign_table, $foreign_key);&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _drop_foreign_key($table, $fkIndex = 1) {&#10;        $fkQuery = &quot;ALTER TABLE &quot; . $table . &quot; DROP FOREIGN KEY &quot; . $table . &quot;_ibfk_&quot; . $fkIndex . &quot; ;&quot;;&#10;&#10;        $this-&gt;db-&gt;query($fkQuery);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _enable_key_checks() {&#10;        $enable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 1;&quot;;&#10;        $this-&gt;db-&gt;query($enable_key_checks);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _disable_key_checks() {&#10;        $disable_key_checks = &quot;SET FOREIGN_KEY_CHECKS = 0;&quot;;&#10;        $this-&gt;db-&gt;query($disable_key_checks);&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MIGRATION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DOWN" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
