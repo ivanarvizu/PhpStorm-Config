@@ -439,7 +439,7 @@
       <option name="JAVA_SCRIPT" value="true" />
     </context>
   </template>
-  <template name="&lt;?ci-lang" value="&lt;?php echo $this-&gt;lang-&gt;line('$VALUE$'); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="&lt;?lang" value="&lt;?php echo $this-&gt;lang-&gt;line('$VALUE$'); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
     <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -481,7 +481,13 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-m-col" value="$fields = array(&#10;        '$OLD_NAME$' =&gt; array(&#10;                'name' =&gt; '$NEW_NAME$',&#10;                'type' =&gt; '$NEW_TYPE$',&#10;        ),&#10;);&#10;$this-&gt;dbforge-&gt;modify_column('$TABLE_NAME$', $fields);" description="" toReformat="false" toShortenFQNames="true">
+  <template name="&lt;?ulang" value="&lt;?php echo mb_strtoupper($this-&gt;lang-&gt;line('$VALUE$')); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-m-col" value="$fields = array(&#10;        '$OLD_NAME$' =&gt; array(&#10;                'name' =&gt; '$NEW_NAME$',&#10;                //TODO Completar caracteristicas del nuevo campo.&#10;        ),&#10;);&#10;$this-&gt;dbforge-&gt;modify_column('$TABLE$', $fields);&#10;&#10;//TODO Copiar en el DOWN o descartar&#10;&#10;$fields = array(&#10;        '$NEW_NAME$' =&gt; array(&#10;                'name' =&gt; '$OLD_NAME$',&#10;                //TODO Completar caracteristicas originales del campo. Puedes apoyarte en la migración donde se agregó&#10;        ),&#10;);&#10;$this-&gt;dbforge-&gt;modify_column('$TABLE$', $fields);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="OLD_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="NEW_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="NEW_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
