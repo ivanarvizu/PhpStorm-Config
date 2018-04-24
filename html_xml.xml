@@ -14,4 +14,10 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="SCR" value="&lt;script language=&quot;JavaScript&quot; src=&quot;$SELECTION$&quot;&gt;&lt;/script&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="XML" value="true" />
+    </context>
+  </template>
 </templateSet>
