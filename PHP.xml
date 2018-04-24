@@ -496,4 +496,9 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="elo-capsule" value="// Requiere Illuminate Database / Eloquent&#10;use Illuminate\Database\Capsule\Manager as DB;" description="Eloquent Capsule" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
