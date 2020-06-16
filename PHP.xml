@@ -501,4 +501,12 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="apif" value="public function $NAME$_$METHOD$($PARAMETERS$){&#10;    if(!$this-&gt;session_started()) return;&#10;    &#10;    $END$&#10;    &#10;    $response = array();&#10;    $this-&gt;set_response($response, REST_Controller::HTTP_OK);&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMETERS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
