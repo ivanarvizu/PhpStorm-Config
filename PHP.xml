@@ -305,7 +305,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-1-to-m" value="public function $MODEL$() {&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+  <template name="elo-1-to-m" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // foreignKey es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
     <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
