@@ -555,4 +555,11 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="pg-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
