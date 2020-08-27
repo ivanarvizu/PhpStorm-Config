@@ -549,4 +549,10 @@
       <option name="PHP" value="true" />
     </context>
   </template>
+  <template name="sapif" value="public function $FUNCTIONMAME$_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;session_started()) return;&#10;    }" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNCTIONMAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
 </templateSet>
