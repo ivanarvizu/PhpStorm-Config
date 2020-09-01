@@ -19,7 +19,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-post" value="$this-&gt;input-&gt;post(&quot;$VAR_NAME$&quot;, TRUE)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-post" value="$$$VAR_NAME$ = $this-&gt;input-&gt;post(&quot;$VAR_NAME$&quot;, TRUE);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -31,7 +31,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-api" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function $APINAME$_put()&#10;    {&#10;&#10;    }&#10;}" description="API REST con loa libreria de CI REST" toReformat="false" toShortenFQNames="true">
+  <template name="ci-api" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_put()&#10;    {&#10;&#10;    }&#10;}" description="API REST con loa libreria de CI REST" toReformat="false" toShortenFQNames="true">
     <variable name="APINAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -305,7 +305,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-1-to-m" value="public function $MODEL$() {&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+  <template name="elo-1-to-m" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // foreignKey es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
     <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
@@ -364,14 +364,14 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-p" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;" description="" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -379,7 +379,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;&#10;$OBJECT$-&gt;$VARNAME3$ = $$$VARNAME3$;" description="" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -501,18 +501,65 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="postf" value="public function $NAME$_post($PARAMETERS$){&#10;    $END$&#10;}" description="public function" toReformat="true" toShortenFQNames="true">
+  <template name="apif" value="public function $NAME$_$METHOD$($PARAMETERS$){&#10;    if(!$this-&gt;session_started()) return;&#10;    &#10;    $END$&#10;    &#10;    $response = array();&#10;    $this-&gt;set_response($response, REST_Controller::HTTP_OK);&#10;}" description="" toReformat="false" toShortenFQNames="true">
     <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="PARAMETERS" expression="phpVar" defaultValue="" alwaysStopAt="true" />
+    <variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAMETERS" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="PHP Class Member" value="true" />
+      <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="getf" value="public function $NAME$_get($PARAMETERS$){&#10;    $END$&#10;}" description="public function" toReformat="true" toShortenFQNames="true">
-    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="PARAMETERS" expression="phpVar" defaultValue="" alwaysStopAt="true" />
+  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="PHP Class Member" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-p2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-p3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-postt" value="$$$VAR_NAME$ = $this-&gt;input-&gt;post(&quot;$VAR_NAME$&quot;, TRUE) $OPER$== $COND$ ? $TRUE$ : $FALSE$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COND" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TRUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FALSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sapi" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;    private $userdata;&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;        &#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;        &#10;        $this-&gt;userdata = null;&#10;        &#10;         // El hash JWT generado en Login_post() es pasado a cada petición de cada acción por medio del header Auth. Para&#10;        // recuperarlo, lo primero que hay que hacer es recuperar los headers&#10;        $headers = $this-&gt;input-&gt;request_headers();&#10;&#10;        // Si en los headers (es un array) existe el campo &quot;Auth&quot; y contiene un valor...&#10;        if (array_key_exists('Auth', $headers) &amp;&amp; !empty($headers['Auth'])) {&#10;            //... Desencripta el token JWT&#10;            $decodedToken = AUTHORIZATION::validateUser($headers['Auth']);&#10;&#10;            // Si el token es desencriptable...&#10;            if ($decodedToken != false) {&#10;&#10;                //... Recupera los valores del array con el que se generó&#10;                $this-&gt;userdata = $decodedToken-&gt;userdata;&#10;            }&#10;        }&#10;        // Si las validaciones fallan, la función no se termina y llega a este punto, mostrando un mensaje de error si&#10;        // el token no es desencriptable o si no existe un header &quot;Auth&quot;.&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function secure_index_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_put()&#10;    {&#10;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _session_started()&#10;    {&#10;        if ($this-&gt;userdata === null) {&#10;            // Respuesta. HTTP_UNAUTHORIZED = 401 (Unauthorized). Respuesta que se da cuando no se puede iniciar sesión&#10;            // con el usuario y la contraseña proporcionadas.&#10;            $this-&gt;set_response(array(&#10;                &quot;userdata&quot; =&gt; null,&#10;                &quot;error&quot; =&gt; &quot;Acceso denegado&quot;&#10;            ), REST_Controller::HTTP_UNAUTHORIZED);&#10;            return false;&#10;        }&#10;        return true;&#10;    }&#10;}" description="API REST con loa libreria de CI REST y token de seguridad" toReformat="false" toShortenFQNames="true">
+    <variable name="APINAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="sapif" value="public function $FUNCTIONMAME$_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNCTIONMAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="pg-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
     </context>
   </template>
 </templateSet>
