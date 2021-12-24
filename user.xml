@@ -1,0 +1,22 @@
+<templateSet group="user">
+  <template name="&lt;?img" value="&lt;img src=&quot;&lt;?php echo &quot;$PATH$&quot;.$VARIABLE$ ?&gt;&quot; /&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-noti" value="// Requiere colocar la librería de notificaciones en application/libraries&#10;$this-&gt;load-&gt;library(&quot;notifications&quot;);&#10;// El payload de la notificación, se define como Array&#10;$notification_data = $PAYLOAD$;&#10;&#10;//----- ENVIAR A CLIENTE -----&#10;&#10;// Especificar el id del cliente, ya sea de sesión o userdata&#10;$client = Clientusers::find($CLIENTUSERID$);&#10;//Si el usuario cliente tiene definido el OneSignalID, se le envía la notificación. De lo contrario, se ignora&#10;if (strlen($client-&gt;onesignalid) &gt; 30) {&#10;    $this-&gt;notifications-&gt;send_to_client(&#10;        &quot;$NOTI_TITLE$&quot;,&#10;        &quot;$NOTI_MESSAGE$&quot;,&#10;        [$client-&gt;onesignalid],&#10;        $notification_data&#10;    );&#10;}&#10;&#10;//----- ENVIAR A PROVEEDOR -----&#10;&#10;//TODO Descomentar en caso de que se deba enviar a varios proveedores / puntos de venta. Ignorar en caso contrario&#10;//foreach ($PROVIDER_ARRAY$ as $index =&gt; $provider_data) {&#10;&#10;// También se puede reemplazar pos PROVIDERPOS. Descomentar si es el caso.&#10;$provider = Providers::find($PROVIDERID$);&#10;//$provider = Providerpos::find($PROVIDERID$);&#10;&#10;// Los usuarios de la notificación se definen como un arreglo&#10;$prov_recipients = array();&#10;// Se recorre el listado de usuarios del proveedor/susursal&#10;foreach ($provider-&gt;Providerusers()-&gt;get() as $provideruser) {&#10;    // Si dicho usuario tiene definido un OneSignalID &#10;    if (strlen($provideruser-&gt;onesignalid) &gt; 30) {&#10;        // Se mete al array de recipientes&#10;        $prov_recipients[] = $provideruser-&gt;onesignalid;&#10;    }&#10;}&#10;&#10;// Se envía la notificación a los recipientes seleccionados&#10;if (!empty($prov_recipients)) {&#10;    $this-&gt;notifications-&gt;send_to_provider(&#10;        &quot;$PROV_NOTI_TITLE$&quot;,&#10;        &quot;$PROV_NOTI_MSG$&quot;,&#10;        $prov_recipients,&#10;        $notification_data&#10;    );&#10;}&#10;//TODO Descomentar en caso de que se deba enviar a varios proveedores / puntos de venta. Ignorar en caso contrario&#10;// }" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PAYLOAD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CLIENTUSERID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="NOTI_TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="NOTI_MESSAGE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROVIDER_ARRAY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROVIDERID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROV_NOTI_TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROV_NOTI_MSG" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+</templateSet>

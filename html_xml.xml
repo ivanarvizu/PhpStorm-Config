@@ -1,23 +1,27 @@
-<templateSet group="html/xml">
-  <template name="html5" value="&lt;!DOCTYPE html&gt;&#10;&lt;html lang=&quot;en&quot;&gt;&#10;&lt;head&gt;&#10;    &lt;meta charset=&quot;UTF-8&quot;&gt;&#10;    &lt;title&gt;$TITLE$&lt;/title&gt;&#10;&lt;/head&gt;&#10;&lt;body&gt;&#10;&#10;&lt;/body&gt;&#10;&lt;/html&gt;" description="Generar una plantilla básica HTML5" toReformat="false" toShortenFQNames="true">
+<templateSet group="HTML/XML">
+  <template name="bs-lbl" value="&lt;div class=&quot;label label-$LABELTYPE$&quot;&gt;$MESSAGE$&lt;/div&gt; " description="" toReformat="false" toShortenFQNames="true">
+    <variable name="LABELTYPE" expression="enum(&quot;info&quot;, &quot;success&quot;, &quot;warning&quot;, &quot;danger&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="MESSAGE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-modal" value="&lt;!-- Button trigger modal (Opcional) --&gt;&#10;&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot; data-toggle=&quot;modal&quot; data-target=&quot;#$ID$&quot;&gt;&#10;  Abrir&#10;&lt;/button&gt;&#10;&#10;&lt;!-- Modal --&gt;&#10;&lt;div class=&quot;modal fade&quot; id=&quot;$ID$&quot; tabindex=&quot;-1&quot; role=&quot;dialog&quot; aria-labelledby=&quot;$ID$-label&quot;&gt;&#10;  &lt;div class=&quot;modal-dialog&quot; role=&quot;document&quot;&gt;&#10;    &lt;div class=&quot;modal-content&quot;&gt;&#10;      &lt;div class=&quot;modal-header&quot;&gt;&#10;        &lt;button type=&quot;button&quot; class=&quot;close&quot; data-dismiss=&quot;modal&quot; aria-label=&quot;Close&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;&amp;times;&lt;/span&gt;&lt;/button&gt;&#10;        &lt;h4 class=&quot;modal-title&quot; id=&quot;$ID$-label&quot;&gt;$TITLE$&lt;/h4&gt;&#10;      &lt;/div&gt;&#10;      &lt;div class=&quot;modal-body&quot;&gt;&#10;        &lt;!--TODO TEXTO VA AQUI--&gt;&#10;        $TEXT$&#10;      &lt;/div&gt;&#10;      &lt;div class=&quot;modal-footer&quot;&gt;&#10;        &lt;button type=&quot;button&quot; class=&quot;btn btn-default&quot; data-dismiss=&quot;modal&quot;&gt;Cerrar&lt;/button&gt;&#10;        &lt;button type=&quot;button&quot; class=&quot;btn btn-primary&quot;&gt;Guardar&lt;/button&gt;&#10;      &lt;/div&gt;&#10;    &lt;/div&gt;&#10;  &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TITLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="input-hid" value="&lt;input type=&quot;hidden&quot; name=&quot;$NAME$&quot; value=&quot;$VALUE$&quot; /&gt;" description="INPUT Hidden" toReformat="false" toShortenFQNames="true">
-    <variable name="NAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="bs-file" value=" &lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$FILE_FIELD$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;file&quot; id=&quot;$FILE_FIELD$&quot; name=&quot;$FILE_FIELD$&quot; class=&quot;form-control&quot;&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FILE_FIELD" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
-    </context>
-  </template>
-  <template name="SCR" value="&lt;script language=&quot;JavaScript&quot; src=&quot;$SELECTION$&quot;&gt;&lt;/script&gt;" description="" toReformat="false" toShortenFQNames="true">
-    <context>
-      <option name="HTML" value="true" />
-      <option name="XML" value="true" />
     </context>
   </template>
 </templateSet>

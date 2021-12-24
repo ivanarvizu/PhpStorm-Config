@@ -11,10 +11,10 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-mod" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// Este modelo usa Eloquent, no usa la interfaz de modelos de Codeigniter CI_Model&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;&#10;class $MODELNAME$ extends Eloquent{&#10;    // Asignaciones -------------------------------------------------------&#10;    // definir que atributos son asignables (por seguridad)&#10;    &#10;&#10;    // Ligar el modelo a la tabla ---------------------------------&#10;    // Definir la tabla yel campo llave de la misma&#10;    protected $table = '$TABLENAME$';&#10;    protected $primaryKey = '$PRIMARYKEY$';&#10;    &#10;    // Definir relaciones --------------------------------------------------&#10;}" description="Modelo de Eloquent" toReformat="false" toShortenFQNames="true">
+  <template name="elo-mod" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// Este modelo usa Eloquent, no usa la interfaz de modelos de Codeigniter CI_Model&#10;&#10;use Illuminate\Database\Eloquent\Model as Eloquent;&#10;&#10;class $MODELNAME$ extends Eloquent{&#10;    // Asignaciones ----------------------------------------------------------------------------------------------------&#10;    // definir que atributos son asignables (por seguridad)&#10;    &#10;&#10;    // Ligar el modelo a la tabla --------------------------------------------------------------------------------------&#10;    // Definir la tabla yel campo llave de la misma&#10;    protected $table = &quot;$TABLENAME$&quot;;&#10;    protected $primaryKey = '$PRIMARYKEY$';&#10;    &#10;    // Definir relaciones ----------------------------------------------------------------------------------------------&#10;}" description="Modelo de Eloquent" toReformat="false" toShortenFQNames="true">
     <variable name="MODELNAME" expression="capitalize(String)" defaultValue="" alwaysStopAt="true" />
-    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="PRIMARYKEY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="decapitalize(MODELNAME)" defaultValue="" alwaysStopAt="true" />
+    <variable name="PRIMARYKEY" expression="enum(concat(TABLENAME, &quot;_id&quot;), concat(TABLENAME, &quot;id&quot;))" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
@@ -95,17 +95,20 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$&#10;)," description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-int" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;    &quot;unsigned&quot; =&gt; $UNSIGNED$,&#10;    &quot;default&quot; =&gt; $DEFAULT$&#10;),&#10;//TODO Drop-code: $this-&gt;dbforge-&gt;drop_column(&quot;$TABLENAME$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UNSIGNED" expression="enum(&quot;true&quot;,&quot;false&quot;);" defaultValue="" alwaysStopAt="true" />
+    <variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;)," description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-varchar" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; $SIZE$,&#10;),&#10;//TODO Drop-code: $this-&gt;dbforge-&gt;drop_column(&quot;$TABLENAME$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="enum(&quot;50&quot;,&quot;100&quot;,&quot;150&quot;,&quot;200&quot;,&quot;255&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
@@ -136,18 +139,19 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-datetime" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-datetime" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;&#10;),&#10;//TODO Drop-code: $this-&gt;dbforge-&gt;drop_column(&quot;$TABLENAME$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-elo" value="&quot;created_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;),&#10;&quot;updated_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-elo-tst" value="&quot;created_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;),&#10;&quot;updated_at&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-mig" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;    public function __construct()&#10;    {&#10;        parent::__construct();&#10;&#10;        $db = array(&quot;db&quot; =&gt; $this-&gt;db);&#10;        $this-&gt;load-&gt;library(&quot;migration_tools&quot;, $db);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function up() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;migration_tools-&gt;_disable_key_checks();&#10;&#10;        $UP$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;migration_tools-&gt;_enable_key_checks();&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        // Deshabilitar las llaver foráneas&#10;        $this-&gt;migration_tools-&gt;_disable_key_checks();&#10;&#10;        $DOWN$&#10;        &#10;        // Terminada la migración, volver a habilitar las llaves foráneas&#10;        $this-&gt;migration_tools-&gt;_enable_key_checks();&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-mig" value="defined(&quot;BASEPATH&quot;) OR exit(&quot;No direct script access allowed&quot;);&#10;&#10;class Migration_$MIGRATION$ extends CI_Migration {&#10;    public function __construct()&#10;    {&#10;        parent::__construct();&#10;&#10;        $db = array(&quot;db&quot; =&gt; $this-&gt;db);&#10;        $this-&gt;load-&gt;library(&quot;migration_tools&quot;, $db);&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function up() {&#10;        $UP$&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function down() {&#10;        $DOWN$&#10;    }&#10;}" description="" toReformat="false" toShortenFQNames="true">
     <variable name="MIGRATION" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="UP" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="DOWN" expression="" defaultValue="" alwaysStopAt="true" />
@@ -155,7 +159,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-key" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-key" value="&quot;$FIELDNAME$&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)," description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -195,20 +199,22 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="bs-input-v" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="bs-input" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;input type=&quot;text$VERIFY$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
     <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VERIFY" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="bs-input-h" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;text&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="bs-inputh" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$ID$&quot; class=&quot;col-$SIZELB$-$SIZENUMBERLB$ control-label&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;col-$SIZELB$-$SIZENUMBER$&quot;&gt;&#10;        &lt;input type=&quot;text$VERIFY$&quot; class=&quot;form-control&quot; id=&quot;$ID$&quot; name=&quot;$ID$&quot; placeholder=&quot;$LABEL$&quot;&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
     <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZELB" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZENUMBERLB" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="SIZENUMBER" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VERIFY" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="HTML" value="true" />
       <option name="PHP" value="true" />
@@ -274,14 +280,12 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-post" value="$post = $this-&gt;input-&gt;post(NULL, TRUE);&#10;$OBJECT$ = new $MODEL$();" description="" toReformat="false" toShortenFQNames="true">
-    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+  <template name="elo-post" value="$post = $this-&gt;input-&gt;post(NULL, TRUE);&#10;" description="$_POST para Eloquent" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-var" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-var" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="Produce $OBJECT-&gt;VARNAME = $post['VARNAME'];" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -305,7 +309,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-1-to-m" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // foreignKey es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+  <template name="elo-1-to-m" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // &quot;foreignKey&quot; es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    // La tabla padre SIEMPRE es la dueña original del campo llave. Si las tablas tabla1 y tabla2 se unen por el campo &#10;    // tabla1_id, tabla1 SIEMPRE será la padre, independientemente dle orden en que se relacionen&#10;    // Se puede agregar un tercer parámetro (ownerKey) en caso de que los nombres de los campos llave sean distintos. Este &#10;    // debe ser el campo de la tabla padre que se liga al hijo&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;//------------------------------------------------------------------------------------------------------------------&#10;public function $PARENTMODEL$() {&#10;    // Si se agrego tercer parámetro, este debe agregarse también aca, en el mismo orden.&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
     <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
@@ -313,7 +317,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-1-to-1" value="public function $MODEL$() {&#10;    return $this-&gt;hasOne(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-One" toReformat="false" toShortenFQNames="true">
+  <template name="elo-1-to-1" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // &quot;foreignKey&quot; es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    // La tabla padre SIEMPRE es la dueña original del campo llave. Si las tablas tabla1 y tabla2 se unen por el campo &#10;    // tabla1_id, tabla1 SIEMPRE será la padre, independientemente dle orden en que se relacionen&#10;    // Se puede agregar un tercer parámetro (ownerKey) en caso de que los nombres de los campos llave sean distintos. Este &#10;    // debe ser el campo de la tabla padre que se liga al hijo&#10;    return $this-&gt;hasOne(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;//------------------------------------------------------------------------------------------------------------------&#10;public function $PARENTMODEL$() {&#10;    // Si se agrego tercer parámetro, este debe agregarse también aca, en el mismo orden.&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-One" toReformat="false" toShortenFQNames="true">
     <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
@@ -364,14 +368,14 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-p" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-p" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="Produce $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-v2" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;" description="Produce $OBJECT-&gt;VARNAME = $VARNAME; (2 veces)" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -379,7 +383,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;&#10;$OBJECT$-&gt;$VARNAME3$ = $$$VARNAME3$;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-v3" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$VARNAME2$;&#10;$OBJECT$-&gt;$VARNAME3$ = $$$VARNAME3$;" description="Produce $OBJECT-&gt;VARNAME = $VARNAME; (3 veces)" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -388,7 +392,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="db-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;DATETIME&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+  <template name="db-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;$this-&gt;migration_tools-&gt;log(&quot;Tabla creada: $TABLENAME$&quot;);&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);&#10;$this-&gt;migration_tools-&gt;log(&quot;Tabla eliminada: $TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
@@ -410,7 +414,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-csrf" value=" &quot;csrf&quot; =&gt; array(&#10;    'name' =&gt; $this-&gt;security-&gt;get_csrf_token_name(),&#10;    'hash' =&gt; $this-&gt;security-&gt;get_csrf_hash()&#10;)&#10;&#10;//TODO pegar en la view: &lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $csrf['name']; ?&gt;&quot; value=&quot;&lt;?php echo $csrf['hash']; ?&gt;&quot;&gt;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-csrf" value=" &quot;csrf&quot; =&gt; array(&#10;    'name' =&gt; $this-&gt;security-&gt;get_csrf_token_name(),&#10;    'hash' =&gt; $this-&gt;security-&gt;get_csrf_hash()&#10;)&#10;&#10;/*TODO pegar en la view: &lt;input type=&quot;hidden&quot; name=&quot;&lt;?php echo $csrf['name']; ?&gt;&quot; value=&quot;&lt;?php echo $csrf['hash']; ?&gt;&quot;&gt; */" description="" toReformat="false" toShortenFQNames="true">
     <context>
       <option name="PHP" value="true" />
     </context>
@@ -421,7 +425,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-mod" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+  <template name="ci-lm" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -490,8 +494,7 @@
   <template name="db-m-col" value="$fields = array(&#10;        '$OLD_NAME$' =&gt; array(&#10;                'name' =&gt; '$NEW_NAME$',&#10;                //TODO Completar caracteristicas del nuevo campo.&#10;        ),&#10;);&#10;$this-&gt;dbforge-&gt;modify_column('$TABLE$', $fields);&#10;&#10;//TODO Copiar en el DOWN o descartar&#10;&#10;$fields = array(&#10;        '$NEW_NAME$' =&gt; array(&#10;                'name' =&gt; '$OLD_NAME$',&#10;                //TODO Completar caracteristicas originales del campo. Puedes apoyarte en la migración donde se agregó&#10;        ),&#10;);&#10;$this-&gt;dbforge-&gt;modify_column('$TABLE$', $fields);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="OLD_NAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="NEW_NAME" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="NEW_TYPE" expression="" defaultValue="" alwaysStopAt="true" />
-    <variable name="TABLE_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
@@ -509,14 +512,14 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-v" value="$OBJECT$-&gt;$VARNAME$ = $$$VARNAME$;" description="Produce $OBJECT-&gt;VARNAME = $VARNAME;" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-p2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-p2" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="Produce $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$']; (2 veces)" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -524,7 +527,7 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="elo-p3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="" toReformat="false" toShortenFQNames="true">
+  <template name="elo-p3" value="$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;$OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;$OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="Produce $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$']; (3 veces)" toReformat="false" toShortenFQNames="true">
     <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
@@ -543,13 +546,13 @@
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="ci-sapi" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;    private $userdata;&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;        &#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;        &#10;        $this-&gt;userdata = null;&#10;        &#10;         // El hash JWT generado en Login_post() es pasado a cada petición de cada acción por medio del header Auth. Para&#10;        // recuperarlo, lo primero que hay que hacer es recuperar los headers&#10;        $headers = $this-&gt;input-&gt;request_headers();&#10;&#10;        // Si en los headers (es un array) existe el campo &quot;Auth&quot; y contiene un valor...&#10;        if (array_key_exists('Auth', $headers) &amp;&amp; !empty($headers['Auth'])) {&#10;            //... Desencripta el token JWT&#10;            $decodedToken = AUTHORIZATION::validateUser($headers['Auth']);&#10;&#10;            // Si el token es desencriptable...&#10;            if ($decodedToken != false) {&#10;&#10;                //... Recupera los valores del array con el que se generó&#10;                $this-&gt;userdata = $decodedToken-&gt;userdata;&#10;            }&#10;        }&#10;        // Si las validaciones fallan, la función no se termina y llega a este punto, mostrando un mensaje de error si&#10;        // el token no es desencriptable o si no existe un header &quot;Auth&quot;.&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function secure_index_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_put()&#10;    {&#10;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _session_started()&#10;    {&#10;        if ($this-&gt;userdata === null) {&#10;            // Respuesta. HTTP_UNAUTHORIZED = 401 (Unauthorized). Respuesta que se da cuando no se puede iniciar sesión&#10;            // con el usuario y la contraseña proporcionadas.&#10;            $this-&gt;set_response(array(&#10;                &quot;userdata&quot; =&gt; null,&#10;                &quot;error&quot; =&gt; &quot;Acceso denegado&quot;&#10;            ), REST_Controller::HTTP_UNAUTHORIZED);&#10;            return false;&#10;        }&#10;        return true;&#10;    }&#10;}" description="API REST con loa libreria de CI REST y token de seguridad" toReformat="false" toShortenFQNames="true">
+  <template name="ci-apiucl" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;    private $userdata;&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;        &#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;        &#10;        $this-&gt;userdata = null;&#10;        &#10;         // El hash JWT generado en Login_post() es pasado a cada petición de cada acción por medio del header Auth. Para&#10;        // recuperarlo, lo primero que hay que hacer es recuperar los headers&#10;        $headers = $this-&gt;input-&gt;request_headers();&#10;&#10;        // Si en los headers (es un array) existe el campo &quot;Auth&quot; y contiene un valor...&#10;        if (array_key_exists('Auth', $headers) &amp;&amp; !empty($headers['Auth'])) {&#10;            //... Desencripta el token JWT&#10;            $decodedToken = AUTHORIZATION::validateUser($headers['Auth']);&#10;&#10;            // Si el token es desencriptable...&#10;            if ($decodedToken != false) {&#10;&#10;                //... Recupera los valores del array con el que se generó&#10;                $this-&gt;userdata = $decodedToken-&gt;userdata;&#10;            }&#10;        }&#10;        // Si las validaciones fallan, la función no se termina y llega a este punto, mostrando un mensaje de error si&#10;        // el token no es desencriptable o si no existe un header &quot;Auth&quot;.&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function secure_index_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_put()&#10;    {&#10;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _session_started()&#10;    {&#10;        if ($this-&gt;userdata === null) {&#10;            // Respuesta. HTTP_UNAUTHORIZED = 401 (Unauthorized). Respuesta que se da cuando no se puede iniciar sesión&#10;            // con el usuario y la contraseña proporcionadas.&#10;            $this-&gt;set_response(array(&#10;                &quot;userdata&quot; =&gt; null,&#10;                &quot;error&quot; =&gt; &quot;Acceso denegado&quot;&#10;            ), REST_Controller::HTTP_UNAUTHORIZED);&#10;            return false;&#10;        }&#10;        return true;&#10;    }&#10;}" description="API REST con loa libreria de CI REST y token de seguridad" toReformat="false" toShortenFQNames="true">
     <variable name="APINAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>
   </template>
-  <template name="sapif" value="public function $FUNCTIONMAME$_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }" toReformat="false" toShortenFQNames="true">
+  <template name="sapif" value="public function $FUNCTIONMAME$_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FUNCTIONMAME" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
@@ -558,6 +561,992 @@
   <template name="pg-a" value="$this-&gt;dbforge-&gt;add_field(array(&#10;        &quot;$FIELDNAME$&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;INT&quot;,&#10;            &quot;constraint&quot; =&gt; 11,&#10;            &quot;unsigned&quot; =&gt; TRUE,&#10;            &quot;auto_increment&quot; =&gt; TRUE&#10;        ),&#10;        //TODO Agregar campos de la tabla aquí&#10;        &quot;created_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        ),&#10;        &quot;updated_at&quot; =&gt; array(&#10;            &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;,&#10;        )&#10;    )&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_key('$FIELDNAME$', TRUE);&#10;$this-&gt;dbforge-&gt;create_table('$TABLENAME$');&#10;&#10;//TODO Cortar y pegar en la función down()&#10;&#10;$this-&gt;dbforge-&gt;drop_table(&quot;$TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
     <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
     <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-m-to-m" value="// Many-to-many relationships are defined by writing a method that returns the result of the belongsToMany method.&#10;&#10;// As mentioned previously, to determine the table name of the relationship's joining table, Eloquent will join the two &#10;// related model names in alphabetical order. However, you are free to override this convention. You may do so by &#10;// passing a second argument to the belongsToMany method.&#10;&#10;// The third argument is the foreign key name of the model on which you are defining the relationship (mi ID en tabla &#10;//pivote), while the fourth  argument is the foreign key name of the model that you are joining to (ID de la otra tabla)&#10;&#10;public function $CHILDMODEL$() {&#10;    &#10;    return $this-&gt;belongsToMany('$CHILDMODEL$', '$PIVOTTABLE$', '$MYIDONPIVOT$', '$CHILDIDONPIVOT$');&#10;}&#10;&#10;// INVERSE: As you can see, the relationship is defined exactly the same as its counterpart&#10;&#10;//TODO poner en modelo hijo&#10;public function $PARENTMODEL$() {&#10;    return $this-&gt;belongsToMany('$PARENTMODEL$', '$PIVOTTABLE$', '$CHILDIDONPIVOT$', '$MYIDONPIVOT$');&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="CHILDMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PIVOTTABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MYIDONPIVOT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CHILDIDONPIVOT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="def" value="defined(&quot;$CONSTANT_NAME$&quot;) or define(&quot;$CONSTANT_NAME$&quot;,$CONSTANT_VALUE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="CONSTANT_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONSTANT_VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-log" value="//TODO INCLUIR CAPSULE SI NO ESTA INCLUIDO &#10;//use Illuminate\Database\Capsule\Manager as Capsule;&#10;&#10;//TODO COLOCAR ANTES DE EJECUTAR EL OBJETO&#10;Capsule::enableQueryLog();&#10;&#10;//TODO COLOCAR DESPUÉS DE EJECUTAR EL OBJETO&#10;$query_log = Capsule::getQueryLog();&#10;dump($query_log);" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="dumpdie" value="//============================================================&#10;//TODO ELIMINAR EN PRODUCCION&#10;dump($VAR$);&#10;die();&#10;//TODO FIN DE ELIMINAR EN PRODUCCION&#10;//============================================================&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ifnull" value="&lt;?php if($VAR$ === null) { ?&gt;&#10;&lt;?php } ?&gt;" description="PHP IF" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?if!" value="&lt;?php if($VAR$ !== $COMPARE$) { ?&gt;&#10;&lt;?php } ?&gt;" description="PHP IF" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COMPARE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?if!null" value="&lt;?php if($VAR$ !== null) { ?&gt;&#10;&lt;?php } ?&gt;" description="PHP IF" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ifel!" value="&lt;?php if($VAR$ !== $COMPARE$) { ?&gt;&#10;    &lt;!-- IF condition goes here --&gt;&#10;&lt;?php } else { ?&gt;&#10;    &lt;!-- ELSE condition goes here --&gt;&#10;&lt;?php } ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="COMPARE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-dump" value="/** ============================== ELIMINAR DESDE AQUI =========================*/&#10;Illuminate\Database\Capsule\Manager::enableQueryLog();&#10;&#10;// Escribe la query Eloquent aca. NO USES -&gt;get() o -&gt;first()&#10;$output_query_ = $QUERY$;                   &#10;&#10;$users_query = str_replace(array('?'), array('\'%s\''), $QUERY$-&gt;toSql());&#10;$users_query = vsprintf($users_query, $QUERY$-&gt;getBindings());&#10;dump($users_query);&#10;&#10;/** ============================== ELIMINAR HASTA AQUI =========================*/&#10;&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="QUERY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?dump" value="&lt;?php dump($VARIABLE$); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?mxn" value="$ &lt;?php echo number_format($QUANTITY$, 2); ?&gt; MXN" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="QUANTITY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?usd" value="US$ &lt;?php echo number_format($QUANTITY$, 2); ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="QUANTITY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?img" value="&lt;img src=&quot;&lt;?php echo &quot;$PATH$&quot;.$VARIABLE$; ?&gt;&quot; /&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?img100" value="&lt;img src=&quot;&lt;?php echo &quot;$PATH$&quot;.$VARIABLE$; ?&gt;&quot; style=&quot;width: 100px;&quot; /&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-postn" value="$post = $this-&gt;input-&gt;post(null, true);" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-p" value="$post['$VARNAME$']" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-double-pr" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;DOUBLE PRECISION&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-key-proid" value="&quot;providerid&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-key-posid" value="&quot;posid&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-img" value="&quot;$FIELDNAME$_img&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; 50,&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-timestamp" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-tstamp" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;TIMESTAMP&quot;&#10;)," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="uk-datetime" value="&lt;label for=&quot;$FIELDNAME$_day&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;&lt;?php //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); ?&gt;&#10;&lt;div class=&quot;uk-grid-small&quot; uk-grid&gt;&#10;    &lt;div class=&quot;uk-width-1-5&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_day&quot; name=&quot;$FIELDNAME$_day&quot; class=&quot;uk-select&quot;&gt;&#10;            &lt;?php for ($i = 1; $i &lt;= 31; $i++) { &#10;                $day = str_pad($i, 2, &quot;0&quot;, STR_PAD_LEFT);&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $day; ?&gt;&quot;&gt;&lt;?php echo $day; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;            &#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;uk-width-2-5&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_month&quot; name=&quot;$FIELDNAME$_month&quot; class=&quot;uk-select&quot;&gt;&#10;            &lt;?php foreach(monthsArray() as $val =&gt; $month) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&gt;&lt;?php echo $month; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;uk-width-1-5&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_year&quot; name=&quot;$FIELDNAME$_year&quot; class=&quot;uk-select&quot;&gt;&#10;        &lt;?php for ($i = date(&quot;Y&quot;, time()); $i &lt;= date(&quot;Y&quot;, time()) + 10; $i++) {&#10;            ?&gt;&#10;            &lt;option value=&quot;&lt;?php echo $i; ?&gt;&quot;&gt;&lt;?php echo $i; ?&gt;&lt;/option&gt;&#10;        &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;uk-width-1-5&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_time&quot; name=&quot;$FIELDNAME$_time&quot; class=&quot;uk-select&quot;&gt;&#10;            &lt;?php foreach(hoursArray() as $val =&gt; $hour) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&gt;&lt;?php echo $hour; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="uk-date" value="&lt;label for=&quot;$FIELDNAME$_day&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;&lt;?php //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); ?&gt;&#10;&lt;div class=&quot;uk-grid-small&quot; uk-grid&gt;&#10;    &lt;div class=&quot;uk-width-1-4&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_day&quot; name=&quot;$FIELDNAME$_day&quot; class=&quot;uk-select&quot;&gt;&#10;            &lt;?php for ($i = 1; $i &lt;= 31; $i++) { &#10;                $day = str_pad($i, 2, &quot;0&quot;, STR_PAD_LEFT);&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $day; ?&gt;&quot;&gt;&lt;?php echo $day; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;            &#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;uk-width-2-4&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_month&quot; name=&quot;$FIELDNAME$_month&quot; class=&quot;uk-select&quot;&gt;&#10;            &lt;?php foreach(monthsArray() as $val =&gt; $month) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&gt;&lt;?php echo $month; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;uk-width-1-4&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_year&quot; name=&quot;$FIELDNAME$_year&quot; class=&quot;uk-select&quot;&gt;&#10;        &lt;?php for ($i = date(&quot;Y&quot;, time()); $i &lt;= date(&quot;Y&quot;, time()) + 10; $i++) {&#10;            ?&gt;&#10;            &lt;option value=&quot;&lt;?php echo $i; ?&gt;&quot;&gt;&lt;?php echo $i; ?&gt;&lt;/option&gt;&#10;        &lt;?php } ?&gt;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="uk-time" value="&lt;label for=&quot;$FIELDNAME$&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;&lt;?php //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); ?&gt;&#10;&#10;&lt;select id=&quot;$FIELDNAME$&quot; name=&quot;$FIELDNAME$&quot; class=&quot;uk-select&quot;&gt;&#10;    &lt;?php foreach(hoursArray() as $val =&gt; $hour) {&#10;        ?&gt;&#10;        &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&gt;&lt;?php echo $hour; ?&gt;&lt;/option&gt;&#10;    &lt;?php } ?&gt;&#10;&lt;/select&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-datetime" value="&lt;label for=&quot;$FIELDNAME$_day&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;&lt;?php &#10;    //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); &#10;    $selected_date = time()$SELECTEDDATE$;&#10;?&gt;&#10;&lt;div class=&quot;row&quot;&gt;&#10;    &lt;div class=&quot;col-md-2&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_day&quot; name=&quot;$FIELDNAME$_day&quot; class=&quot;form-control&quot;&gt;&#10;            &lt;?php for ($i = 1; $i &lt;= 31; $i++) { &#10;                $day = str_pad($i, 2, &quot;0&quot;, STR_PAD_LEFT);&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $day; ?&gt;&quot;&lt;?php if(date(&quot;d&quot;,$selected_date) === $day) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $day; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;            &#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;col-md-4&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_month&quot; name=&quot;$FIELDNAME$_month&quot; class=&quot;form-control&quot;&gt;&#10;            &lt;?php foreach(monthsArray() as $val =&gt; $month) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&lt;?php if(date(&quot;m&quot;,$selected_date) === $val) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $month; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;col-md-3&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_year&quot; name=&quot;$FIELDNAME$_year&quot; class=&quot;form-control&quot;&gt;&#10;        &lt;?php for ($i = date(&quot;Y&quot;, time()); $i &lt;= date(&quot;Y&quot;, time()) + 10; $i++) {&#10;            ?&gt;&#10;            &lt;option value=&quot;&lt;?php echo $i; ?&gt;&quot;&lt;?php if(date(&quot;Y&quot;,$selected_date) === $i) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $i; ?&gt;&lt;/option&gt;&#10;        &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;col-md-3&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_time&quot; name=&quot;$FIELDNAME$_time&quot; class=&quot;form-control&quot;&gt;&#10;            &lt;?php foreach(hoursArray() as $val =&gt; $hour) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&lt;?php if(date(&quot;H:i:00&quot;,$selected_date) === $val) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $hour; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTEDDATE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-date" value="&lt;label for=&quot;$FIELDNAME$_day&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;&lt;?php &#10;    //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); &#10;    $selected_date = time()$SELECTEDDATE$;&#10;?&gt;&#10;&lt;div class=&quot;row&quot;&gt;&#10;    &lt;div class=&quot;col-md-3&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_day&quot; name=&quot;$FIELDNAME$_day&quot; class=&quot;form-control&quot;&gt;&#10;            &lt;?php for ($i = 1; $i &lt;= 31; $i++) { &#10;                $day = str_pad($i, 2, &quot;0&quot;, STR_PAD_LEFT);&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $day; ?&gt;&quot;&lt;?php if(date(&quot;d&quot;,$selected_date) === $day) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $day; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;            &#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;col-md-6&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_month&quot; name=&quot;$FIELDNAME$_month&quot; class=&quot;form-control&quot;&gt;&#10;            &lt;?php foreach(monthsArray() as $val =&gt; $month) {&#10;                ?&gt;&#10;                &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&lt;?php if(date(&quot;m&quot;,$selected_date) === $val) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $month; ?&gt;&lt;/option&gt;&#10;            &lt;?php } ?&gt;&#10;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;    &lt;div class=&quot;col-md-3&quot;&gt;&#10;        &lt;select id=&quot;$FIELDNAME$_year&quot; name=&quot;$FIELDNAME$_year&quot; class=&quot;form-control&quot;&gt;&#10;        &lt;?php for ($i = date(&quot;Y&quot;, time()); $i &lt;= date(&quot;Y&quot;, time()) + 10; $i++) {&#10;            ?&gt;&#10;            &lt;option value=&quot;&lt;?php echo $i; ?&gt;&quot;&lt;?php if(date(&quot;Y&quot;,$selected_date) === $i) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $i; ?&gt;&lt;/option&gt;&#10;        &lt;?php } ?&gt;&#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SELECTEDDATE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-time" value="&lt;?php &#10;    //TODO REQUIERE $this-&gt;load-&gt;helper(&quot;datefull_helper&quot;); &#10;    $selected_date = time()$SELECTEDDATE$;&#10;?&gt;&#10;&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$FIELDNAME$_day&quot;&gt;$LABELNAME$&lt;/label&gt;&#10;    &lt;select id=&quot;$FIELDNAME$_time&quot; name=&quot;$FIELDNAME$_time&quot; class=&quot;form-control&quot;&gt;&#10;        &lt;?php foreach(hoursArray() as $val =&gt; $hour) {&#10;            ?&gt;&#10;            &lt;option value=&quot;&lt;?php echo $val; ?&gt;&quot;&lt;?php if(date(&quot;H:i:00&quot;,$selected_date) === $val) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $hour; ?&gt;&lt;/option&gt;&#10;        &lt;?php } ?&gt;&#10;    &lt;/select&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SELECTEDDATE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-upload" value="//TODO requiere $this-&gt;load-&gt;helper(&quot;global_helper&quot;);&#10;&#10;$config['upload_path']          = './files/$FILEPATH$';&#10;$config['allowed_types']        = 'gif|jpg|png$FILETYPES$';&#10;$config['max_size']             = $MAXSIZE$;&#10;$config['max_width']            = $MAXWIDTH$;&#10;$config['max_height']           = $MAXHEIGHT$;&#10;$config['min_width']            = $MINWIDTH$;&#10;$config['min_height']           = $MINHEIGHT$;&#10;$config['encrypt_name']         = true;&#10;&#10;$this-&gt;load-&gt;library('upload', $config);&#10;&#10;if (!empty($_FILES['$POSTFIELDNAME$']['name'])) {&#10;    if ( ! $this-&gt;upload-&gt;do_upload('$POSTFIELDNAME$')) {&#10;        $error = array('error' =&gt; $this-&gt;upload-&gt;display_errors());&#10;        //TODO HAZ ALGO CON EL MENSAJE DE ERROR&#10;&#10;    } else {&#10;        $upload_data = $this-&gt;upload-&gt;data();&#10;        $filename = $upload_data['file_name'];&#10;        unlink_if_exists($config[&quot;upload_path&quot;].&quot;/&quot;.$LASTIMG$);&#10;        // TODO HAZ ALGO&#10;    }&#10;}&#10;&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FILEPATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FILETYPES" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MAXSIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MAXWIDTH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MAXHEIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MINWIDTH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MINHEIGHT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="POSTFIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LASTIMG" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-select" value="&lt;div class=&quot;form-group&quot;&gt;&#10;    &lt;label for=&quot;$FIELDNAME$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;select id=&quot;$FIELDNAME$&quot; name=&quot;$FIELDNAME$&quot; class=&quot;form-control&quot;&gt;&#10;    //TODO agrega for o foreach&#10;        &lt;option value=&quot;&lt;?php echo $VALUE$; ?&gt;&quot;&lt;?php if($CONDITION$) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $VALUEOPTION$ ?&gt;&lt;/option&gt; &#10;&lt;/select&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUEOPTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="uk-select" value="//TODO agregar al &lt;form&gt; class=&quot;uk-form-stacked&quot;&#10;&#10;&lt;div class=&quot;uk-margin&quot;&gt;&#10;    &lt;label class=&quot;uk-form-label&quot; for=&quot;$FIELDNAME$&quot;&gt;$LABEL$&lt;/label&gt;&#10;    &lt;div class=&quot;uk-form-controls&quot;&gt;&#10;        &lt;select class=&quot;uk-select&quot; id=&quot;$FIELDNAME$&quot; name=&quot;$FIELDNAME$&quot; &gt;&#10;            //TODO agrega for o foreach&#10;        &lt;option value=&quot;&lt;?php echo $VALUE$; ?&gt;&quot;&lt;?php if($CONDITION$) echo &quot; selected&quot;; ?&gt;&gt;&lt;?php echo $VALUEOPTION$ ?&gt;&lt;/option&gt; &#10;        &lt;/select&gt;&#10;    &lt;/div&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUEOPTION" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-pdate" value="//TODO Requiere $this-&gt;load-&gt;helper(&quot;datefull_helper);&#10;$OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$_year'].&quot;-&quot;.$post['$VARNAME$_month'].&quot;-&quot;.$post['$VARNAME$_day'].&quot; $VERIFY$00:00:00&quot;;&#10;" description="Produce el concatenador de fechas generado por DATEFULL_HELPER. $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$_year'].&quot;-&quot;.$post['$VARNAME$_month'].&quot;-&quot;.$post['$VARNAME$_day'].&quot; $VERIFY$00:00:00&quot;;" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VERIFY" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?ternnull" value="&lt;?php echo $VARIABLE$ === null ? $THEN$ : $ELSE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?tern!null" value="&lt;?php echo $VARIABLE$ !== null ? $THEN$ : $ELSE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?valnull" value="&lt;?php echo $VARIABLE$ === null ? $THEN$ : $VARIABLE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?val!null" value="&lt;?php echo $VARIABLE$ !== null ? $VARIABLE$ : $ELSE$; ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?valnullo" value="&lt;?php echo $VARIABLE$ === null ? $THEN$ : $VARIABLE$-&gt;$PROP$; ?&gt;" description="Ternario con null" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="THEN" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?val!nullo" value="&lt;?php echo $VARIABLE$ !== null ? $VARIABLE$-&gt;$PROP$ : $ELSE$ ?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PROP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?providerid" value="&lt;?php echo $provider-&gt;providerid; ?&gt;" description="PHP echo" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?obj" value="&lt;?php echo $VARIABLE$-&gt;$PARAM$; ?&gt;" description="PHP echo" toReformat="false" toShortenFQNames="true">
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARAM" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-attr" value="//TODO Define en el array cada nuebo atributo. Este corresponde a una función. los espacios se ponen con pisos &quot;_&quot; y en &#10;//TODO la función con Camel Caps&#10;protected $appends = array($ATTRSNAME$);&#10;&#10;//TODO una función por atributo. Puedes usar elo-attrf para crearla. &#10;public function get$ATTRFUNC$Attribute()&#10;{&#10;   //TODO haz algo&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="ATTRSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ATTRFUNC" expression="camelCase($ATTRSNAME$)" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-attrf" value="//TODO Si el atributo se llama pepe_pecas, esto debe llamarse getPepePecasAttribute&#10;public function get$ATTRFUNC$Attribute()&#10;{&#10;   //TODO haz algo&#10;}" description="Eloquent Función de Atributo" toReformat="false" toShortenFQNames="true">
+    <variable name="ATTRFUNC" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="sw" value="switch($VARNAME$) {&#10;    //TODO Agrega casos con swc&#10;    case $EL1$:&#10;        //TODO Haz algo&#10;        $DOSOMETHING$&#10;        break;&#10;    default:&#10;        //TODO haz algo&#10;        break;&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="EL1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DOSOMETHING" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="swc" value="case $EL1$:&#10;    //TODO Haz algo&#10;    $DOSOMETHING$&#10;    break;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="EL1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DOSOMETHING" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-putf" value="//TODO REQUIERE use \ForceUTF8\Encoding;&#10;$OBJECT$-&gt;$VARNAME$ =  Encoding::toUTF8($post['$VARNAME$']);" description="$_POST UTF8 para Eloquent" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-vutf" value="//TODO REQUIERE use \ForceUTF8\Encoding;&#10;$OBJECT$-&gt;$VARNAME$ = Encoding::toUTF8($$$VARNAME$);" description="Produce $OBJECT-&gt;VARNAME = Encoding::toUTF8($VARNAME);. Requiere la librería \ForceUTF8\Encoding;" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-scope" value="// You can use Local Query Scopes of Eloquent to define custom where clauses.&#10;&#10;// As said in documentation:&#10;&#10;// Local scopes allow you to define common sets of constraints that you may easily re-use throughout your application. &#10;// For example, you may need to frequently retrieve all users that are considered &quot;popular&quot;. To define a scope, prefix &#10;// an Eloquent model method with scope.&#10;&#10;//And an example: If you define a custom scope on your model:&#10;&#10;public function scope$SCOPENAME$($query)&#10;{&#10;    return $query-&gt;where('votes', '&gt;', 100);&#10;}&#10;// You can use it directly with your model.&#10;&#10;//TODO CAMBIAR A MINUSCULAS Y PEGAR EN CONTROLADOR Modelo::$SCOPENAME$()-&gt;get();" description="Funcion de Scope para model Eloquent" toReformat="false" toShortenFQNames="true">
+    <variable name="SCOPENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-nested" value="-&gt;where(function($q) use ($VARS$ /*TODO Agrega variables: $var1, $var2,..., */) {&#10;    $q-&gt;where(/*TODO Haz algo*/);&#10;})" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-sortable" value="/*&#10;    Requisitos previos: &#10;    &#10;    - jQuery y jQuery UI&#10;    - Agregar campo &quot;order&quot; a tabla involucrada&#10;    - Agregar a query de elementos -&gt;orderBy(&quot;order&quot;, &quot;asc&quot;)&#10;*/&#10;&#10;/***********************************************************************************************************************&#10;//TODO Si hay protección CSRF, agregar input&#10;&lt;input type=&quot;hidden&quot; id=&quot;token&quot; name=&quot;&lt;?php echo $csrf['name'];?&gt;&quot; value=&quot;&lt;?php echo $csrf['hash'];?&gt;&quot;&gt;&#10;&#10;Y esto agregar en controlador: &#10;&#10;&quot;csrf&quot; =&gt; array(&#10;    'name' =&gt; $this-&gt;security-&gt;get_csrf_token_name(),&#10;    'hash' =&gt; $this-&gt;security-&gt;get_csrf_hash()&#10;)&#10;&#10;&#10;//TODO En tu HTML agrega la clase .sortable a tu table &gt; tbody y un ID autoincremental a tu tr&#10;&#10;&lt;tbody class=&quot;sortable_$SELECTOR$&quot;&gt;&#10;                                &#10;&lt;tr id=&quot;---ID---&quot; style=&quot;cursor: grab;&quot; data-toggle=&quot;tooltip&quot; title=&quot;Arrastrame&quot;&gt;&#10;************************************************************************************************************************/&#10;&#10;// función que guarda el ordenamiento de los datos&#10;public function $FUNCNAME$()&#10;{&#10;    $post = $this-&gt;input-&gt;post(NULL, TRUE);&#10;&#10;    foreach ($post[&quot;$ARRAY$&quot;] as $index =&gt; $ELEMENTID$) {&#10;    &#10;        //TODO Descomentar o poner tu propia funcion de guardado.&#10;        /*$$$OBJ$ = $ELOQUENTCLASS$::find($ELEMENTID$);&#10;        $$$OBJ$-&gt;order = $index;&#10;        $$$OBJ$-&gt;save();*/&#10;    }&#10;    echo json_encode(['hash' =&gt; $this-&gt;security-&gt;get_csrf_hash()]);&#10;}&#10;    &#10;/***********************************************************************************************************************&#10;//TODO Agrega este código a tu JavasCript&#10;&#10;$(&quot;.sortable_$SELECTOR$&quot;).sortable({&#10;    cursor: &quot;grabbing&quot;,&#10;    stop: function () {&#10;        var $ARRAY$ = new Array();&#10;        $(&quot;.sortable_$SELECTOR$ &gt; tr&quot;).each(function () {&#10;            $ARRAY$.push($(this).attr(&quot;id&quot;));&#10;        }).promise().done(function () {&#10;            $.ajax({&#10;                type: 'post',&#10;                url: '/$CONTROLLERURL$/$FUNCNAME$',&#10;                data: {$ARRAY$: $ARRAY$, csrf_industore$TOKENNAME$: $('#token').val()},&#10;                success: function (response) {&#10;                    var result = JSON.parse(response);&#10;                    $('#token').val(result.hash);&#10;                }&#10;            });&#10;        });&#10;    }&#10;});&#10;************************************************************************************************************************/" description="Ejemplo COMPLETO de elemento SORTABLE" toReformat="false" toShortenFQNames="true">
+    <variable name="SELECTOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FUNCNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ARRAY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELEMENTID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJ" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELOQUENTCLASS" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONTROLLERURL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TOKENNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-order" value="&quot;order&quot; =&gt; array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 11,&#10;    &quot;unsigned&quot; =&gt; TRUE,&#10;    &quot;default&quot; =&gt; 0&#10;)," description="Campo &quot;order&quot; para realizar ordenamiento de elementos en tabla" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?img!null" value="&lt;?php&#10;if ($$$VARIABLE$ !== null) {&#10;?&gt;&#10;&lt;img src=&quot;&lt;?php echo &quot;$PATH$&quot;.$$$VARIABLE$; ?&gt;&quot; style=&quot;width: $WIDTH$px&quot; /&gt;&#10;&lt;?php&#10;}&#10;?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="WIDTH" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="&lt;?img!nullo" value="&lt;?php&#10;if ($OBJ$ !== null) {&#10;?&gt;&#10;&lt;img src=&quot;&lt;?php echo &quot;$PATH$&quot;.$OBJ$-&gt;$ELEMENT$; ?&gt;&quot; style=&quot;width: $WIDTH$px&quot; /&gt;&#10;&lt;?php&#10;}&#10;?&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJ" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELEMENT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="WIDTH" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-1to1" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;// &quot;foreignKey&quot; es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;// La tabla padre SIEMPRE es la dueña original del campo llave. Si las tablas tabla1 y tabla2 se unen por el campo &#10;    // tabla1_id, tabla1 SIEMPRE será la padre, independientemente dle orden en que se relacionen&#10;    // Se puede agregar un tercer parámetro (ownerKey) en caso de que los nombres de los campos llave sean distintos. Este &#10;    // debe ser el campo de la tabla padre que se liga al hijo&#10;    return $this-&gt;hasOne(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;//------------------------------------------------------------------------------------------------------------------&#10;public function $PARENTMODEL$() {&#10;    // Si se agrego tercer parámetro, este debe agregarse también aca, en el mismo orden.&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-One" toReformat="false" toShortenFQNames="true">
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-1tom" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // &quot;foreignKey&quot; es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    // La tabla padre SIEMPRE es la dueña original del campo llave. Si las tablas tabla1 y tabla2 se unen por el campo &#10;    // tabla1_id, tabla1 SIEMPRE será la padre, independientemente dle orden en que se relacionen&#10;    // Se puede agregar un tercer parámetro (ownerKey) en caso de que los nombres de los campos llave sean distintos. Este &#10;    // debe ser el campo de la tabla padre que se liga al hijo&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$MODELID$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;//------------------------------------------------------------------------------------------------------------------&#10;public function $PARENTMODEL$() {&#10;    // Si se agrego tercer parámetro, este debe agregarse también aca, en el mismo orden.&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$MODELID$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-1tom3" value="//------------------------------------------------------------------------------------------------------------------&#10;public function $MODEL$() {&#10;    // &quot;foreignKey&quot; es el campo en la tabla hija que referencía, o une, a la tabla padre&#10;    // La tabla padre SIEMPRE es la dueña original del campo llave. Si las tablas tabla1 y tabla2 se unen por el campo &#10;    // tabla1_id, tabla1 SIEMPRE será la padre, independientemente dle orden en que se relacionen&#10;    // Se puede agregar un tercer parámetro (ownerKey) en caso de que los nombres de los campos llave sean distintos. Este &#10;    // debe ser el campo de la tabla padre que se liga al hijo&#10;    return $this-&gt;hasMany(&quot;$MODEL$&quot;, &quot;$FK$&quot;, &quot;$LK$&quot;);&#10;}&#10;&#10;//TODO Cortar y pegar esto en modelo hijo&#10;//------------------------------------------------------------------------------------------------------------------&#10;public function $PARENTMODEL$() {&#10;    // Si se agrego tercer parámetro, este debe agregarse también aca, en el mismo orden.&#10;    return $this-&gt;belongsTo(&quot;$PARENTMODEL$&quot;, &quot;$FK$&quot;, &quot;$LK$&quot;);&#10;}" description="Eloquent One-To-Many" toReformat="false" toShortenFQNames="true">
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FK" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LK" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PARENTMODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-a" value="$$$OBJECT$ = new $MODEL$();&#10;&#10;$$$OBJECT$-&gt;$VAR$ = $VAL$;&#10;&#10;$$$OBJECT$-&gt;save();" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-u" value="$$$OBJECT$ = $MODEL$::find($ID$);&#10;&#10;$$$OBJECT$-&gt;$VAR$ = $VAL$;&#10;&#10;$$$OBJECT$-&gt;save();" description="Crear variable" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-ua" value="$$$OBJECT$ = $MODEL$::find($ID$);&#10;if($$$OBJECT$ === null) {&#10;    $$$OBJECT$ = new $MODEL$();&#10;}&#10;&#10;$$$OBJECT$-&gt;$VAR$ = $VAL$;&#10;&#10;$$$OBJECT$-&gt;save();" description="Eloquent: Encontrar o crear colección." toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ID" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-udata" value="$OBJECT$-&gt;$VARNAME$ = $this-&gt;userdata-&gt;$VARNAME$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-udata2" value="$OBJECT$-&gt;$VARNAME$ = $this-&gt;userdata-&gt;$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $this-&gt;userdata-&gt;$VARNAME2$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-udata3" value="$OBJECT$-&gt;$VARNAME$ = $this-&gt;userdata-&gt;$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $this-&gt;userdata-&gt;$VARNAME2$;&#10;$OBJECT$-&gt;$VARNAME3$ = $this-&gt;userdata-&gt;$VARNAME3$;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wp" value="$CONCATENATOR$where(&quot;$VARNAME$&quot;, $post['$VARNAME$'])" description="Eloquent WHERE usando variable $post" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wv" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$VARNAME$)" description="Eloquent WHERE usando variable" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-w" value=" $CONCATENATOR$where(&quot;$VARNAME$&quot;, $VALUE$)" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-v" value="&quot;$VAR$&quot; =&gt; $$$VAR$," description="Produce &quot;VAR&quot; =&gt; $VAR" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-p" value="&quot;$VAR$&quot; =&gt; $post['$VAR$']," description="Produce &quot;$VAR$&quot; =&gt; $post['$VAR$']," toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-when" value="// The when method only executes the given Closure when the first parameter is true. If the first parameter is false, &#10;// the Closure will not be executed.&#10;$SEP$when($VARIABLE$ $OPERATOR$ $CONDITION$, function ($query) use ($Variablesiaplica$) {&#10;    //TODO Haz algo&#10;    return $query-&gt;where('$LOQUESEA1$', $LOQUESEA2$);&#10;})" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="enum(&quot;::&quot;,&quot;-&gt;&quot;)" defaultValue="-&gt;" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPERATOR" expression="enum(&quot;===&quot;,&quot;!==&quot;, &quot;&gt;&quot;, &quot;&lt;&quot;, &quot;&gt;==&quot;, &quot;&lt;==&quot;)" defaultValue="===" alwaysStopAt="true" />
+    <variable name="CONDITION" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="Variablesiaplica" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOQUESEA1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOQUESEA2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-apiupr" value="defined('BASEPATH') OR exit('No direct script access allowed');&#10;&#10;// This can be removed if you use __autoload() in config.php OR use Modular Extensions&#10;require APPPATH . '/libraries/REST_Controller.php';&#10;&#10;class $APINAME$ extends REST_Controller {&#10;    private $userdata;&#10;&#10;    function __construct()&#10;    {&#10;        // Construct the parent class&#10;        parent::__construct();&#10;        &#10;&#10;        // Configure limits on our controller methods&#10;        // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php&#10;        $this-&gt;methods['user_get']['limit'] = 500; // 500 requests per hour per user/key&#10;        $this-&gt;methods['user_post']['limit'] = 100; // 100 requests per hour per user/key&#10;        $this-&gt;methods['user_delete']['limit'] = 50; // 50 requests per hour per user/key&#10;        &#10;        header('Access-Control-Allow-Origin: *');&#10;        header(&quot;Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method&quot;);&#10;        header(&quot;Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE&quot;);&#10;        $method = $_SERVER['REQUEST_METHOD'];&#10;        if ($method == &quot;OPTIONS&quot;) {&#10;            die();&#10;        }&#10;        &#10;        $this-&gt;userdata = null;&#10;        &#10;         // El hash JWT generado en Login_post() es pasado a cada petición de cada acción por medio del header Auth. Para&#10;        // recuperarlo, lo primero que hay que hacer es recuperar los headers&#10;        $headers = $this-&gt;input-&gt;request_headers();&#10;&#10;        // Si en los headers (es un array) existe el campo &quot;Auth&quot; y contiene un valor...&#10;        if (array_key_exists('Auth', $headers) &amp;&amp; !empty($headers['Auth'])) {&#10;            //... Desencripta el token JWT&#10;            $decodedToken = AUTHORIZATION::validateUserProvider($headers['Auth']);&#10;&#10;            // Si el token es desencriptable...&#10;            if ($decodedToken != false) {&#10;&#10;                //... Recupera los valores del array con el que se generó&#10;                $this-&gt;userdata = $decodedToken-&gt;userdata;&#10;            }&#10;        }&#10;        // Si las validaciones fallan, la función no se termina y llega a este punto, mostrando un mensaje de error si&#10;        // el token no es desencriptable o si no existe un header &quot;Auth&quot;.&#10;    }&#10;    /*==================================================================================================================&#10;                                            POSIBLES RESPUESTAS HTTP&#10;&#10;    $this-&gt;response($users, REST_Controller::HTTP_OK); // OK (200)&#10;    $this-&gt;response($users, REST_Controller::HTTP_NOT_FOUND); // NOT_FOUND (404)&#10;    $this-&gt;response($users, REST_Controller::HTTP_BAD_REQUEST); // BAD_REQUEST (400)&#10;    $this-&gt;response($message, REST_Controller::HTTP_CREATED); // CREATED (201) Usar en INSERT&#10;    ==================================================================================================================*/&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_get()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function secure_index_get()&#10;    {&#10;        // Colocar esta linea en cada controlador validado.&#10;        if (!$this-&gt;_session_started()) return;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_post()&#10;    {&#10;        &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_delete()&#10;    {&#10;      &#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    public function index_put()&#10;    {&#10;&#10;    }&#10;    //------------------------------------------------------------------------------------------------------------------&#10;    private function _session_started()&#10;    {&#10;        if ($this-&gt;userdata === null) {&#10;            // Respuesta. HTTP_UNAUTHORIZED = 401 (Unauthorized). Respuesta que se da cuando no se puede iniciar sesión&#10;            // con el usuario y la contraseña proporcionadas.&#10;            $this-&gt;set_response(array(&#10;                &quot;userdata&quot; =&gt; null,&#10;                &quot;error&quot; =&gt; &quot;Acceso denegado&quot;&#10;            ), REST_Controller::HTTP_UNAUTHORIZED);&#10;            return false;&#10;        }&#10;        return true;&#10;    }&#10;}" description="API REST con loa libreria de CI REST y token de seguridad" toReformat="false" toShortenFQNames="true">
+    <variable name="APINAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-apif" value="// Nombre de dunción y método&#10;public function $FUNCNAME$_$METHOD$() {&#10;    // Descomentar para añadir seguridad&#10;    //if (!$this-&gt;_session_started()) return;&#10;    &#10;    &#10;}&#10;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FUNCNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="METHOD" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-apir" value="$this-&gt;response($RESPONSE$, REST_Controller::$CODE$);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="RESPONSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CODE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-apirok" value="$this-&gt;response($RESPONSE$, REST_Controller::HTTP_OK); // OK (200)&#10; " description="" toReformat="false" toShortenFQNames="true">
+    <variable name="RESPONSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="/*userdata-cl" value="/*TODO Variables disponibles en el Userdata&#10;$this-&gt;userdata-&gt;clientCommercialName;&#10;$this-&gt;userdata-&gt;clientLegalName;&#10;$this-&gt;userdata-&gt;clientID;&#10;$this-&gt;userdata-&gt;branchID;&#10;$this-&gt;userdata-&gt;branchName;&#10;$this-&gt;userdata-&gt;clientUserName;&#10;$this-&gt;userdata-&gt;clientUserFirstName;&#10;$this-&gt;userdata-&gt;clientUserSurName;&#10;$this-&gt;userdata-&gt;clientUserLastName;&#10;$this-&gt;userdata-&gt;clientUserEmail;&#10;$this-&gt;userdata-&gt;userID;&#10;$this-&gt;userdata-&gt;isVIP;&#10;$this-&gt;userdata-&gt;city;&#10;$this-&gt;userdata-&gt;clientUserLevel;&#10;$this-&gt;userdata-&gt;passhash;&#10;*/" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="/*userdata-pr" value="/*TODO Variables disponibles en el Userdata&#10;$this-&gt;userdata-&gt;providerCommercialName;&#10;$this-&gt;userdata-&gt;providerLegalName;&#10;$this-&gt;userdata-&gt;providerID;&#10;$this-&gt;userdata-&gt;posID;&#10;$this-&gt;userdata-&gt;posName;&#10;$this-&gt;userdata-&gt;providerUserName;&#10;$this-&gt;userdata-&gt;providerUserEmail;&#10;$this-&gt;userdata-&gt;userID;&#10;$this-&gt;userdata-&gt;providerUserLevel;&#10;$this-&gt;userdata-&gt;passhash;&#10;&#10;** PERMISOS DE PROVEEDOR **&#10;$this-&gt;userdata-&gt;provider_service_provider;&#10;$this-&gt;userdata-&gt;provider_service_enabled;&#10;$this-&gt;userdata-&gt;provider_store_enabled;&#10;$this-&gt;userdata-&gt;provider_service_payment_enabled;&#10;$this-&gt;userdata-&gt;provider_coupons_enabled;&#10;$this-&gt;userdata-&gt;provider_restaurant_enabled;&#10;$this-&gt;userdata-&gt;provider_ghost_kitchen_enabled;&#10;$this-&gt;userdata-&gt;provider_order_pickup_enabled;&#10;$this-&gt;userdata-&gt;provider_reservations_enabled;&#10;$this-&gt;userdata-&gt;provider_hotel_enabled;&#10;$this-&gt;userdata-&gt;provider_hospital_enabled;&#10;$this-&gt;userdata-&gt;provider_email_contact_enabled;&#10;&#10;** PERMISOS DE SUCURSAL **&#10;$this-&gt;userdata-&gt;service_enabled;&#10;$this-&gt;userdata-&gt;store_enabled;&#10;$this-&gt;userdata-&gt;service_payment_enabled;&#10;$this-&gt;userdata-&gt;coupons_enabled;&#10;$this-&gt;userdata-&gt;restaurant_enabled;&#10;$this-&gt;userdata-&gt;ghost_kitchen_enabled;&#10;$this-&gt;userdata-&gt;order_pickup_enabled;&#10;$this-&gt;userdata-&gt;reservations_enabled;&#10;$this-&gt;userdata-&gt;hotel_enabled;&#10;$this-&gt;userdata-&gt;hospital_enabled;&#10;$this-&gt;userdata-&gt;email_contact_enabled;&#10;&#10;$this-&gt;userdata-&gt;updated_at;&#10;*/" description="" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="curtime" value="date(&quot;Y-m-d h:i:s A&quot;, time())" description="Función date() con el tiempo actual (12 horas)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="curtime24" value="date(&quot;Y-m-d H:i:s&quot;, time())" description="Función date() con el tiempo actual (24 horas)" toReformat="false" toShortenFQNames="true">
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a-varchar" value="$fields = array(&#10;    &quot;$FIELDNAME$&quot; =&gt;array(&#10;        &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;        &quot;constraint&quot; =&gt; $SIZE$,&#10;    ),&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="enum(&quot;50&quot;,&quot;100&quot;,&quot;150&quot;,&quot;200&quot;,&quot;255&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a-int" value="$fields = array(&#10;    &quot;$FIELDNAME$&quot; =&gt;array(&#10;        &quot;type&quot; =&gt; &quot;INT&quot;,&#10;        &quot;constraint&quot; =&gt; $SIZE$,&#10;        &quot;unsigned&quot; =&gt; $UNSIGNED$,&#10;        &quot;default&quot; =&gt; $DEFAULT$&#10;    ),&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="SIZE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UNSIGNED" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="DEFAULT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="api-p" value="$$$VAR_NAME$ = empty($this-&gt;post(&quot;$VAR_NAME$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME$&quot;, true);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="api-p2" value="$$$VAR_NAME$ = empty($this-&gt;post(&quot;$VAR_NAME$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME$&quot;, true);&#10;$$$VAR_NAME2$ = empty($this-&gt;post(&quot;$VAR_NAME2$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME2$&quot;, true);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR_NAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="api-p3" value="$$$VAR_NAME$ = empty($this-&gt;post(&quot;$VAR_NAME$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME$&quot;, true);&#10;$$$VAR_NAME2$ = empty($this-&gt;post(&quot;$VAR_NAME2$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME2$&quot;, true);&#10;$$$VAR_NAME3$ = empty($this-&gt;post(&quot;$VAR_NAME3$&quot;, true)) ? null : $this-&gt;post(&quot;$VAR_NAME3$&quot;, true);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR_NAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR_NAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR_NAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lm2" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);&#10;$this-&gt;load-&gt;model(&quot;$MODELNAME2$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lm3" value="$this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);&#10;$this-&gt;load-&gt;model(&quot;$MODELNAME2$&quot;);&#10;$this-&gt;load-&gt;model(&quot;$MODELNAME3$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lm!" value="if(!class_exists(&quot;$MODELNAME$&quot;)) $this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-lm2!" value="if(!class_exists(&quot;$MODELNAME$&quot;)) $this-&gt;load-&gt;model(&quot;$MODELNAME$&quot;);&#10;if(!class_exists(&quot;$MODELNAME2$&quot;)) $this-&gt;load-&gt;model(&quot;$MODELNAME2$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODELNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="MODELNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a-text" value="$fields = array(&#10;    &quot;$FIELDNAME$&quot; =&gt;array(&#10;        &quot;type&quot; =&gt; &quot;TEXT&quot;,&#10;    ),&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wf" value=" $SEP$ where(function ($query) ) {&#10;    // TODO HAZ ALGO&#10;    $query-&gt;where();&#10;});" description="Eloquent WHERE con función (Para queries con paréntesis)" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wfu" value=" $SEP$where(function ($query) use ($$$VARNAME$) {&#10;    //TODO HAZ ALGO&#10;    $query-&gt;where(&quot;$FIELDNAME$&quot;, $$$VARNAME$);&#10;});" description="Eloquent WHERE con función (Para queries con paréntesis) y USE (para pasar variables)" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="enum(&quot;::&quot;,&quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-when_e" value="// The when method only executes the given Closure when the first parameter is true. If the first parameter is false, &#10;// the Closure will not be executed.&#10; $SEP$ when(empty($VARIABLE$), function ($query) use ($VARIABLE$) {&#10;    //TODO Haz algo&#10;    return $query-&gt;where('$LOQUESEA1$', $VARIABLE$);&#10;})" description="Eloquent WHEN usando función EMPTY" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOQUESEA1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-when_e!" value="// The when method only executes the given Closure when the first parameter is true. If the first parameter is false, &#10;// the Closure will not be executed.&#10; $SEP$ when(!empty($VARIABLE$), function ($query) use ($VARIABLE$) {&#10;    //TODO Haz algo&#10;    return $query-&gt;where('$LOQUESEA1$', $VARIABLE$);&#10;})" description="Eloquent WHEN usando función EMPTY (Negación)" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARIABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LOQUESEA1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-pagi" value="//TODO Definir variable $page, ya sea en el método o en alguna otra parte&#10;$$$VARNAME$ = $QUERY$;&#10;&#10;$per_page = $PERPAGE$;&#10;$skip = ($per_page * $page) - $per_page;&#10;&#10;$for_count = $$$VARNAME$;&#10;&#10;$$$VARNAME$_data = array(&#10;    &quot;total&quot; =&gt; count($for_count-&gt;get()),&#10;    &quot;per_page&quot; =&gt; $per_page,&#10;    &quot;$VARNAME$&quot; =&gt; $$$VARNAME$-&gt;take($per_page)-&gt;skip($skip)-&gt;get()&#10;);&#10;" description="Paginación básica" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="QUERY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PERPAGE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-ilmod" value="if (!class_exists('$CLASSNAME$')) {&#10;    $this-&gt;load-&gt;model(&quot;$CLASSNAME$&quot;);&#10;}" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="CLASSNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-checkbox" value=" &lt;div class=&quot;checkbox&quot;&gt;&#10;    &lt;label&gt;&#10;        &lt;input type=&quot;checkbox&quot; name=&quot;$CHECKBOX$&quot; class=&quot;$CHECKBOX$&quot;&gt; $LABEL$ &#10;    &lt;/label&gt;&#10;&lt;/div&gt;" description="Checkbox de Bootstrap" toReformat="false" toShortenFQNames="true">
+    <variable name="CHECKBOX" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-cbox" value=" &lt;div class=&quot;checkbox&quot;&gt;&#10;    &lt;label&gt;&#10;        &lt;input type=&quot;checkbox&quot; name=&quot;$CHECKBOX$&quot; class=&quot;$CHECKBOX$&quot;&gt; $LABEL$ &#10;    &lt;/label&gt;&#10;&lt;/div&gt;" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="CHECKBOX" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="LABEL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="api-pagi" value="// Agregar variable $page&#10;&#10;$$$VARNAME$ = $QUERY$&#10;&#10;$per_page = $PERPAGE$;&#10;$skip = ($per_page * $page) - $per_page;&#10;&#10;$counting = $$$VARNAME$;&#10;&#10;$data = array(&#10;    &quot;total&quot; =&gt; count($counting-&gt;get()),&#10;    &quot;per_page&quot; =&gt; $per_page,&#10;    &quot;$VARNAME$&quot; =&gt; $$$VARNAME$-&gt;take($per_page)-&gt;skip($skip)-&gt;get()&#10;);&#10;&#10;$this-&gt;set_response($data, REST_Controller::HTTP_OK);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="QUERY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PERPAGE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-join" value="$SEP$join('$TABLENAME$', '$TABLENAME$.$FIELDNAME$', '=', '$TABLENAME2$.$FIELDNAME$')" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-ve" value="$OBJECT$-&gt;$VARNAME$ = $$$REOBJECT1$-&gt;$VARNAME$;" description="Produce $OBJECT-&gt;VARNAME = $OBJECT_2-&gt;VARNAME;" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT1" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-ve2" value="$OBJECT$-&gt;$VARNAME$ = $$$REOBJECT1$-&gt;$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$REOBJECT2$-&gt;$VARNAME2$;" description="Produce $OBJECT-&gt;VARNAME = $OBJECT_2-&gt;VARNAME; (2 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-ve3" value="$OBJECT$-&gt;$VARNAME$ = $$$REOBJECT1$-&gt;$VARNAME$;&#10;$OBJECT$-&gt;$VARNAME2$ = $$$REOBJECT2$-&gt;$VARNAME2$;&#10;$OBJECT$-&gt;$VARNAME3$ = $$$REOBJECT3$-&gt;$VARNAME3$;" description="Produce $OBJECT-&gt;VARNAME = $OBJECT_2-&gt;VARNAME; (3 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT1" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="REOBJECT3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-a-key" value="$fields = array(&#10;    &quot;$FIELDNAME$&quot; =&gt;array(&#10;        &quot;type&quot; =&gt; &quot;INT&quot;,&#10;        &quot;constraint&quot; =&gt; 11,&#10;        &quot;unsigned&quot; =&gt; TRUE,&#10;        &quot;default&quot; =&gt; 0&#10;    ),&#10;);&#10;&#10;$this-&gt;dbforge-&gt;add_column(&quot;$TABLE$&quot;, $fields);&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;drop_column(&quot;$TABLE$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-r" value="// Primer parametreo es el nombre actual de la tabla&#10;// Segundo parámetreo es el nuevo nombre de la tabla&#10;$this-&gt;dbforge-&gt;rename_table('$old_table_name$', '$new_table_name$');&#10;&#10;//TODO Cortar y pegar por cada campo agregado en la función down() (O bien, descartar)&#10;&#10;$this-&gt;dbforge-&gt;rename_table('$new_table_name$', '$old_table_name$');" description="Renombrar Tabla" toReformat="false" toShortenFQNames="true">
+    <variable name="old_table_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="new_table_name" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-vc" value="$OBJECT$-&gt;$VARNAME$ = !empty($$$VARNAME$) ? $$$VARNAME$ : $ELSE_VALUE$;" description="Variable ELOQUENT condicional. $OBJECT-&gt;VARNAME = !empty($VARNAME) ? $VARNAME : ELSE_VALUE;" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELSE_VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-pc3" value="$OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;&#10;$OBJECT$-&gt;$VARNAME2$ = array_key_exists('$VARNAM2E$', $post) ? $post['$VARNAME2$'] : $VALUE_ELSE2$;&#10;$OBJECT$-&gt;$VARNAME3$ = array_key_exists('$VARNAME3$', $post) ? $post['$VARNAME3$'] : $VALUE_ELSE3$;" description="ELOQUENT POST condicional. Produce $OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$; (3 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAM2E" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="ci-pagil" value="//TODO Definir variable $skip, ya sea en el método o en alguna otra parte&#10;$$$VARNAME$ = $QUERY$;&#10;&#10;$per_page = $PERPAGE$;&#10;&#10;$for_count = clone $$$VARNAME$;&#10;&#10;$$$VARNAME$_data = array(&#10;    &quot;total_rows&quot; =&gt; $for_count-&gt;count(),&#10;    &quot;per_page&quot; =&gt; $per_page,&#10;    'base_url' =&gt; '$BASE_URL$';&#10;);&#10;&#10;$this-&gt;load-&gt;library('pagination');&#10;$this-&gt;pagination-&gt;initialize($$$VARNAME$_data);&#10;$links = $this-&gt;pagination-&gt;create_links();&#10;&#10;//TODO agregar al array de output a la vista&#10;// &quot;$$$VARNAME$_data&quot; =&gt; $$$VARNAME$-&gt;take($per_page)-&gt;skip($skip)-&gt;get(),&#10;// &quot;links&quot; =&gt; $links&#10;&#10;" description="Paginación con enlaces (Requiere librería Pagination)" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="QUERY" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="PERPAGE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="BASE_URL" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wucent" value="$CONCATENATOR$whereRaw(&quot;unaccent($VARNAME$) $OPERATOR$ ?&quot;, [$CONCAT$eliminar_tilde($VALUE$)$CONCATCL$])&#10; &#10; //TODO Requiere $this-&gt;load-&gt;helper(&quot;global_helper&quot;);" description="Eloquent WHERE con función UNACCENT para prevenir SQL Injections (Requiere GLOBAL_HELPER)" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="-&gt;" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPERATOR" expression="enum(&quot;ILIKE&quot;,&quot;=&quot;, &quot;&lt;&gt;&quot;, &quot;LIKE&quot;)" defaultValue="=" alwaysStopAt="true" />
+    <variable name="CONCAT" expression="enum('', '&quot;%.&quot;')" defaultValue=" " alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="CONCATCL" expression="enum('', '&quot;.%&quot;')" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wraw" value="  $CONCATENATOR$ whereRaw(&quot;$VARNAME$ =$OPERATOR$ :$VARNAME$&quot;, ['$VARNAME$'=&gt; $VALUE$])" description="Eloquent WHERE RAW preparada para evitar SQL Injections" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OPERATOR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-log" value="$this-&gt;migration_tools-&gt;log(&quot;$MODMESSAJE$: $TABLENAME$&quot;);&#10;&#10;//TODO Copiar en función DOWN&#10;$this-&gt;migration_tools-&gt;log(&quot;Revirtiendo cambios a tabla $TABLENAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="MODMESSAJE" expression="enum(&quot;Tabla creada&quot;, &quot;Tabla modificada&quot;, &quot;Tabla eliminada&quot;);" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-haversine" value="$SEP$selectRaw(&quot;haversine($VARLAT$, $VARLONG$, ?, ?) AS distance&quot;,&#10;[&#10;    $LATITUDE$,&#10;    $LONGITUDE$&#10;]);" description="Función HAVERSINE con Eloquent" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="enum(&quot;::&quot;,&quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARLAT" expression="enum(&quot; &quot;, &quot;latitude&quot;)" defaultValue="latitude" alwaysStopAt="true" />
+    <variable name="VARLONG" expression="enum(&quot;&quot;, &quot;longitude&quot;)" defaultValue="longitude" alwaysStopAt="true" />
+    <variable name="LATITUDE" expression="enum(&quot;&quot;, &quot;$latitude&quot;)" defaultValue="$latitude" alwaysStopAt="true" />
+    <variable name="LONGITUDE" expression="enum(&quot;&quot;, &quot;$longitude&quot;)" defaultValue="$longitude" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-haversinew" value="$SEP$selectRaw(&quot;haversine($VARLAT$, $VARLONG$, ?, ?) AS distance&quot;,&#10;[&#10;    $LATITUDE$,&#10;    $LONGITUDE$&#10;])&#10;-&gt;whereRaw(&quot;haversine($VARLAT$, $VARLONG$, ?, ?) $OPERATOR$ $DISTANCE_IN_KMS$&quot;,&#10;[&#10;    $LATITUDE$,&#10;    $LONGITUDE$&#10;])&#10;;&#10;&#10;" description="Función HAVERSINE con Eloquent" toReformat="false" toShortenFQNames="true">
+    <variable name="SEP" expression="enum(&quot;::&quot;,&quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARLAT" expression="enum(&quot; &quot;, &quot;latitude&quot;)" defaultValue="latitude" alwaysStopAt="true" />
+    <variable name="VARLONG" expression="enum(&quot;&quot;, &quot;longitude&quot;)" defaultValue="longitude" alwaysStopAt="true" />
+    <variable name="LATITUDE" expression="enum(&quot;&quot;, &quot;$latitude&quot;)" defaultValue="$latitude" alwaysStopAt="true" />
+    <variable name="LONGITUDE" expression="enum(&quot;&quot;, &quot;$longitude&quot;)" defaultValue="$longitude" alwaysStopAt="true" />
+    <variable name="OPERATOR" expression="enum(&quot;&gt;&quot;,&quot;&lt;&quot;,&quot;=&quot;,&quot;&lt;&gt;&quot;,&quot;&gt;=&quot;,&quot;&lt;=&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="DISTANCE_IN_KMS" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="zebra-a" value="//TODO Descomentar si librería no está cargada.&#10;//$this-&gt;load-&gt;library(&quot;my_zebra_image&quot;);&#10;&#10;//TODO Definir variables si no están definidas.&#10;//$upload_path = $UPLOAD_PATH$;&#10;//$upload_thumbs = $UPLOAD_THUMBS$;&#10;$this-&gt;my_zebra_image-&gt;adaptive_resize($upload_path, $WIDTH$, $HEIGHT$, $upload_thumbs);" description="Zebra Image Adaptive Resize (Para Thumbnails)" toReformat="false" toShortenFQNames="true">
+    <variable name="UPLOAD_PATH" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="UPLOAD_THUMBS" expression="enum('','$upload_path.&quot;thumbs/&quot;');" defaultValue="" alwaysStopAt="true" />
+    <variable name="WIDTH" expression="enum('', '200');" defaultValue="" alwaysStopAt="true" />
+    <variable name="HEIGHT" expression="enum('', '200');" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-o" value="&quot;$VAR$&quot; =&gt; $$$OBJECT$-&gt;$VAR$," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-o2" value="&quot;$VAR$&quot; =&gt; $$$OBJECT$-&gt;$VAR$,&#10;&quot;$VAR2$&quot; =&gt; $$$OBJECT$-&gt;$VAR2$," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-o3" value="&quot;$VAR$&quot; =&gt; $$$OBJECT$-&gt;$VAR$,&#10;&quot;$VAR2$&quot; =&gt; $$$OBJECT$-&gt;$VAR2$,&#10;&quot;$VAR3$&quot; =&gt; $$$OBJECT$-&gt;$VAR3$," description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VAR" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VAR3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="post-c" value="array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" description="POST Condicional. Produce array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="arr-pc" value="&quot;$VARNAME$&quot; =&gt; array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" description="Produce &quot;$VARNAME$&quot; =&gt; array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-pc2" value="$OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;&#10;$OBJECT$-&gt;$VARNAME2$ = array_key_exists('$VARNAM2E$', $post) ? $post['$VARNAME2$'] : $VALUE_ELSE2$;" description="ELOQUENT POST condicional. Produce $OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$; (2 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAM2E" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-pc" value="$OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" description="ELOQUENT POST condicional. Produce $OBJECT$-&gt;$VARNAME$ = array_key_exists('$VARNAME$', $post) ? $post['$VARNAME$'] : $VALUE_ELSE$;" toReformat="false" toShortenFQNames="true">
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VALUE_ELSE" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="bs-tooltip" value="data-toggle=&quot;tooltip&quot; data-placement=&quot;$PLACEMENT$&quot; title=&quot;$TEXT$&quot;" description="Produce data-toggle=&quot;tooltip&quot; data-placement=&quot;top&quot; title=&quot;Tooltip on top&quot;" toReformat="false" toShortenFQNames="true">
+    <variable name="PLACEMENT" expression="enum(&quot;top&quot;,&quot;bottom&quot;,&quot;left&quot;,&quot;right&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="TEXT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="HTML" value="true" />
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wv2" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$VARNAME$)&#10;-&gt;where(&quot;$VARNAME2$&quot;, $$$VARNAME2$)" description="Eloquent WHERE usando variable" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-wv3" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$VARNAME$)&#10;-&gt;where(&quot;$VARNAME2$&quot;, $$$VARNAME2$)&#10;-&gt;where(&quot;$VARNAME3$&quot;, $$$VARNAME3$)" description="Eloquent WHERE usando variable" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-we" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$ELOOBJ$-&gt;$VARNAME$)" description="Eloquent WHERE usando variable ELOQUENT" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELOOBJ" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-we2" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$ELOOBJ$-&gt;$VARNAME$)&#10;-&gt;where(&quot;$VARNAME2$&quot;, $$$ELOOBJ$-&gt;$VARNAME2$)" description="Eloquent WHERE usando variable ELOQUENT" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELOOBJ" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-we3" value="$CONCATENATOPR$where(&quot;$VARNAME$&quot;, $$$ELOOBJ$-&gt;$VARNAME$)&#10;-&gt;where(&quot;$VARNAME2$&quot;, $$$ELOOBJ$-&gt;$VARNAME2$)&#10;-&gt;where(&quot;$VARNAME3$&quot;, $$$ELOOBJ$-&gt;$VARNAME3$)" description="Eloquent WHERE usando variable ELOQUENT" toReformat="false" toShortenFQNames="true">
+    <variable name="CONCATENATOPR" expression="enum(&quot;::&quot;, &quot;-&gt;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="ELOOBJ" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-int1" value="&quot;$FIELDNAME$&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;INT&quot;,&#10;    &quot;constraint&quot; =&gt; 1,&#10;    &quot;unsigned&quot; =&gt; true,&#10;    &quot;default&quot; =&gt; 0&#10;),&#10;//TODO Drop-code: $this-&gt;dbforge-&gt;drop_column(&quot;$TABLENAME$&quot;, &quot;$FIELDNAME$&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="db-url" value="&quot;$FIELDNAME$_url&quot; =&gt;array(&#10;    &quot;type&quot; =&gt; &quot;VARCHAR&quot;,&#10;    &quot;constraint&quot; =&gt; 255,&#10;),&#10;//TODO Drop-code: $this-&gt;dbforge-&gt;drop_column(&quot;$TABLENAME$&quot;, &quot;$FIELDNAME$_url&quot;);" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="FIELDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="TABLENAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-cp" value="if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];" description="ELOQUENT POST condicional. Produce if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = ? $post['$VARNAME$'];" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-cp2" value="if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;if(array_key_exists('$VARNAME2$', $post)) $OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];" description="ELOQUENT POST condicional. Produce if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = ? $post['$VARNAME$']; (2 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="PHP" value="true" />
+    </context>
+  </template>
+  <template name="elo-cp3" value="if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = $post['$VARNAME$'];&#10;if(array_key_exists('$VARNAME2$', $post)) $OBJECT$-&gt;$VARNAME2$ = $post['$VARNAME2$'];&#10;if(array_key_exists('$VARNAME3$', $post)) $OBJECT$-&gt;$VARNAME3$ = $post['$VARNAME3$'];" description="ELOQUENT POST condicional. Produce if(array_key_exists('$VARNAME$', $post)) $OBJECT$-&gt;$VARNAME$ = ? $post['$VARNAME$']; (2 veces)" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="OBJECT" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME2" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="VARNAME3" expression="" defaultValue="" alwaysStopAt="true" />
     <context>
       <option name="PHP" value="true" />
     </context>

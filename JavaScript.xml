@@ -7,4 +7,12 @@
       <option name="TypeScript" value="true" />
     </context>
   </template>
+  <template name="vue-con" value="// Se crea el componente global de Vue, vinculado a la variable global &quot;v&quot;, que va a estar vinculado a un elemento&#10;// del DOM de la pagina, en este caso a una DIV&#10;var $VARNAME$ = new Vue({&#10;    el: &quot;$IDNAME$&quot;, // ID de la DIV a la que está vinculado el componente.&#10;    data: {&#10;        // Variables a utilizar en el componente&#10;    },&#10;    beforeMount:function() {&#10;        // al momento de montar el componente&#10;    },&#10;    created() {&#10;        // Este método se ejecuta cuando se crea el componente&#10;    },&#10;    filters: {},&#10;    computed: {},&#10;    //--------------------------------------------------------------------------------------------------------------&#10;    methods: {&#10;        //----------------------------------------------------------------------------------------------------------&#10;        // Apartado methods: los métodos o funciones que tendrá el componente. Estos pueden ser llamados de otros&#10;        // métodos o de eventos creados dentro del componente, como v-on. (Ver HTML de la vista)&#10;&#10;        //----------------------------------------------------------------------------------------------------------&#10;    }&#10;});" description="" toReformat="false" toShortenFQNames="true">
+    <variable name="VARNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <variable name="IDNAME" expression="" defaultValue="" alwaysStopAt="true" />
+    <context>
+      <option name="JAVA_SCRIPT" value="true" />
+      <option name="Vue" value="true" />
+    </context>
+  </template>
 </templateSet>
